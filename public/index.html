@@ -7,6 +7,26 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+    <!-- Bouton du menu hamburger -->
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+    <!-- Menu latéral -->
+    <div id="sidebar" class="sidebar">
+        <a href="#">Accueil</a>
+        <a href="#">API 1</a>
+        <a href="#">API 2</a>
+        <a href="#">API 3</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <!-- Barre de recherche -->
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="Rechercher...">
+        <button onclick="searchFunction()">🔍</button>
+    </div>
+
+    <!-- Ton contenu existant -->
     <div class="container">
         <h1 id="apiName1">HELLO</h1>
         <p id="apiDescription1">Description : Ceci est une API de salutations.</p>
@@ -23,6 +43,7 @@
         <button id="getButton3">Get</button>
         <p id="response3"></p>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
