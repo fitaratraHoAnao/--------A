@@ -11,27 +11,18 @@
     <!-- Bouton du menu hamburger -->
     <div class="menu-icon" onclick="toggleMenu()">☰</div>
 
-    <!-- Menu latéral -->
-    <div id="sidebar" class="sidebar">
-        <a href="#" onclick="showContent('Accueil')">Accueil</a>
-        <a href="#" onclick="showContent('HELLO')">HELLO</a>
-        <a href="#" onclick="showContent('BIENVENUE')">BIENVENUE</a>
-        <a href="#" onclick="showContent('LLAMA')">LLAMA</a>
-        <a href="#" onclick="showContent('Contact')">Contact</a>
-    </div>
-
-    <!-- Barre de recherche -->
-    <div class="search-container">
-        <input type="text" id="search-input" placeholder="Rechercher...">
-        <button onclick="searchFunction()">🔍</button>
+    <!-- Conteneur des boutons API -->
+    <div id="menu-container" class="menu-container hidden">
+        <button onclick="showContent('HELLO')">HELLO</button>
+        <button onclick="showContent('BIENVENUE')">BIENVENUE</button>
+        <button onclick="showContent('LLAMA')">LLAMA</button>
     </div>
 
     <!-- Contenu dynamique -->
-    <div class="container" id="content">
-        <h1 id="apiTitle">HELLO</h1>
-        <p id="apiDescription">Description : Ceci est une API de salutations.</p>
-        <button id="getButton" onclick="callApi('hello')">Get</button>
-        <p id="response"></p>
+    <div class="container hidden" id="content">
+        <h1 id="apiTitle"></h1>
+        <p id="apiDescription"></p>
+        <button id="getButton"></button>
     </div>
 
     <script src="script.js"></script>
