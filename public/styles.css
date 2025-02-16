@@ -1,30 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #121212; /* Fond noir */
-    color: white; /* Texte en blanc pour plus de lisibilité */
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+    background-color: #0a0a0a; /* Fond noir profond */
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: black;
+    padding: 20px;
+    box-shadow: 0px 0px 15px rgba(0, 255, 0, 0.7);
+}
+
+h1 {
+    color: #00ff00;
+    text-shadow: 0px 0px 10px #00ff00;
 }
 
 .container {
-    margin-top: 50px;
-    background: #1e1e1e; /* Fond légèrement plus clair pour contraster */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
-    width: 50%;
-    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
 }
 
-button {
-    background: #007BFF;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    cursor: pointer;
-    margin-top: 10px;
-    border-radius: 5px;
+.api-box {
+    background: #121212;
+    border-radius: 10px;
+    padding: 20px;
+    width: 80%;
+    max-width: 400px;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 15px rgba(0, 255, 0, 0.5);
+    border: 2px solid #00ff00;
 }
 
-button:hover {
-    background: #0056b3;
+.api-title {
+    color: #00ff00;
+    text-shadow: 0px 0px 10px #00ff00;
+    font-size: 24px;
+}
+
+.api-category {
+    color: #00ccff;
+    font-size: 16px;
+    margin-top: -10px;
+}
+
+.api-description {
+    font-size: 14px;
+    color: #ccc;
+}
+
+.api-button {
+    background: #00ff00;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0px 0px 10px #00ff00;
+}
+
+.api-button:hover {
+    background: #008000;
+    box-shadow: 0px 0px 20px #00ff00;
 }
