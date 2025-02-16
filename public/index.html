@@ -13,11 +13,11 @@
 
     <!-- Menu latéral -->
     <div id="sidebar" class="sidebar">
-        <a href="#">Accueil</a>
-        <a href="#">HELLO</a>
-        <a href="#">BIENVENUE</a>
-        <a href="#">LLAMA</a>
-        <a href="#">Contact</a>
+        <a href="#" onclick="showContent('Accueil')">Accueil</a>
+        <a href="#" onclick="showContent('HELLO')">HELLO</a>
+        <a href="#" onclick="showContent('BIENVENUE')">BIENVENUE</a>
+        <a href="#" onclick="showContent('LLAMA')">LLAMA</a>
+        <a href="#" onclick="showContent('Contact')">Contact</a>
     </div>
 
     <!-- Barre de recherche -->
@@ -26,22 +26,12 @@
         <button onclick="searchFunction()">🔍</button>
     </div>
 
-    <!-- Ton contenu existant -->
-    <div class="container">
-        <h1 id="apiName1">HELLO</h1>
-        <p id="apiDescription1">Description : Ceci est une API de salutations.</p>
-        <button id="getButton1">Get</button>
-        <p id="response1"></p>
-
-        <h1 id="apiName2">BIENVENUE</h1>
-        <p id="apiDescription2">Description : Ceci est une API de bienvenue.</p>
-        <button id="getButton2">Get</button>
-        <p id="response2"></p>
-
-        <h1 id="apiName3">LLAMA</h1>
-        <p id="apiDescription3">Description : Ceci est une API de réponse Llama.</p>
-        <button id="getButton3">Get</button>
-        <p id="response3"></p>
+    <!-- Contenu dynamique -->
+    <div class="container" id="content">
+        <h1 id="apiTitle">HELLO</h1>
+        <p id="apiDescription">Description : Ceci est une API de salutations.</p>
+        <button id="getButton" onclick="callApi('hello')">Get</button>
+        <p id="response"></p>
     </div>
 
     <script src="script.js"></script>
