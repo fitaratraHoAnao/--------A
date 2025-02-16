@@ -3,5 +3,5 @@ document.getElementById("getButton1").addEventListener("click", () => {
 });
 
 document.getElementById("getButton2").addEventListener("click", () => {
-    window.location.href = "/bienvenue?question=Bienvenue";
+    window.location.href = "/bienvenu?question=Bienvenue";
 });
