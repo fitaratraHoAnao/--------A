@@ -1,30 +1,49 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API Demo</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Demo</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- Bouton du menu hamburger -->
-    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    <!-- Bouton du menu hamburger -->
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
 
-    <!-- Conteneur des boutons API -->
-    <div id="menu-container" class="menu-container hidden">
-        <button onclick="showContent('HELLO')">HELLO</button>
-        <button onclick="showContent('BIENVENUE')">BIENVENUE</button>
-        <button onclick="showContent('LLAMA')">LLAMA</button>
-    </div>
+    <!-- Menu latéral -->
+    <div id="sidebar" class="sidebar">
+        <a href="#">Accueil</a>
+        <a href="#">HELLO</a>
+        <a href="#">BIENVENUE</a>
+        <a href="#">LLAMA</a>
+        <a href="#">Contact</a>
+    </div>
 
-    <!-- Contenu dynamique -->
-    <div class="container hidden" id="content">
-        <h1 id="apiTitle"></h1>
-        <p id="apiDescription"></p>
-        <button id="getButton"></button>
-    </div>
+    <!-- Barre de recherche -->
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="Rechercher...">
+        <button onclick="searchFunction()">🔍</button>
+    </div>
 
-    <script src="script.js"></script>
+    <!-- Ton contenu existant -->
+    <div class="container">
+        <h1 id="apiName1">HELLO</h1>
+        <p id="apiDescription1">Description : Ceci est une API de salutations.</p>
+        <button id="getButton1">Get</button>
+        <p id="response1"></p>
+
+        <h1 id="apiName2">BIENVENUE</h1>
+        <p id="apiDescription2">Description : Ceci est une API de bienvenue.</p>
+        <button id="getButton2">Get</button>
+        <p id="response2"></p>
+
+        <h1 id="apiName3">LLAMA</h1>
+        <p id="apiDescription3">Description : Ceci est une API de réponse Llama.</p>
+        <button id="getButton3">Get</button>
+        <p id="response3"></p>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
