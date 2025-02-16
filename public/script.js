@@ -1,46 +1,32 @@
-// Fonction pour afficher/masquer le menu
+// Garde ton script existant
+document.getElementById("getButton1").addEventListener("click", () => {
+    window.location.href = "/hello?question=Hello";
+});
+
+document.getElementById("getButton2").addEventListener("click", () => {
+    window.location.href = "/bienvenu?question=Bienvenue";
+});
+
+document.getElementById("getButton3").addEventListener("click", () => {
+    window.location.href = "/llama?question=Bonjour";
+});
+
+// 🔽 AJOUT DES NOUVELLES FONCTIONNALITÉS 🔽
+
+// Ouvrir / Fermer le menu latéral
 function toggleMenu() {
-    let menu = document.getElementById("menu-container");
-    let content = document.getElementById("content");
-
-    // Si le menu est caché, on l'affiche
-    if (menu.classList.contains("hidden")) {
-        menu.classList.remove("hidden");
-    }
+    let sidebar = document.getElementById("sidebar");
+    if (sidebar.style.left === "0px") {
+        sidebar.style.left = "-250px";
+    } else {
+        sidebar.style.left = "0px";
+    }
 }
 
-// Fonction pour afficher les informations et cacher le menu
-function showContent(apiName) {
-    let menu = document.getElementById("menu-container");
-    let content = document.getElementById("content");
-    let title = document.getElementById("apiTitle");
-    let description = document.getElementById("apiDescription");
-    let button = document.getElementById("getButton");
-
-    // On met à jour le contenu selon l'API sélectionnée
-    if (apiName === "HELLO") {
-        title.innerText = "HELLO";
-        description.innerText = "Description : Ceci est une API de salutations.";
-        button.innerText = "Get HELLO";
-        button.setAttribute("onclick", "callApi('hello')");
-    } else if (apiName === "BIENVENUE") {
-        title.innerText = "BIENVENUE";
-        description.innerText = "Description : Ceci est une API de bienvenue.";
-        button.innerText = "Get BIENVENUE";
-        button.setAttribute("onclick", "callApi('bienvenu')");
-    } else if (apiName === "LLAMA") {
-        title.innerText = "LLAMA";
-        description.innerText = "Description : Ceci est une API de réponse Llama.";
-        button.innerText = "Get LLAMA";
-        button.setAttribute("onclick", "callApi('llama')");
-    }
-
-    // On masque le menu et affiche le contenu
-    menu.classList.add("hidden");
-    content.classList.remove("hidden");
-}
-
-// Redirection vers l'API
-function callApi(apiName) {
-    window.location.href = "/" + apiName + "?question=" + apiName;
+// Fonction de recherche
+function searchFunction() {
+    let query = document.getElementById("search-input").value;
+    if (query.trim() !== "") {
+        alert("Recherche : " + query);
+    }
 }
