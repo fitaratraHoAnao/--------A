@@ -3,23 +3,70 @@
 body {
     font-family: 'Orbitron', sans-serif;
     text-align: center;
-    background-color: #0a0a0a; /* Fond noir profond */
+    background-color: #0a0a0a;
     color: white;
     margin: 0;
     padding: 0;
 }
 
+/* HEADER */
 header {
     background-color: black;
     padding: 20px;
     box-shadow: 0px 0px 15px rgba(0, 255, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-h1 {
+/* Barre de recherche */
+#searchInput {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #00ff00;
+    background: #121212;
+    color: white;
+}
+
+/* Icône du menu burger */
+.menu-icon {
+    font-size: 24px;
+    cursor: pointer;
     color: #00ff00;
     text-shadow: 0px 0px 10px #00ff00;
 }
 
+/* SIDEBAR */
+#sidebar {
+    position: fixed;
+    right: -250px;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background: #121212;
+    box-shadow: -5px 0px 10px rgba(0, 255, 0, 0.5);
+    transition: 0.3s;
+    padding-top: 50px;
+}
+
+#sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+#sidebar ul li {
+    padding: 15px;
+}
+
+#sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* Conteneur principal */
 .container {
     display: flex;
     flex-direction: column;
@@ -27,6 +74,7 @@ h1 {
     margin-top: 30px;
 }
 
+/* API BOX */
 .api-box {
     background: #121212;
     border-radius: 10px;
@@ -55,6 +103,7 @@ h1 {
     color: #ccc;
 }
 
+/* Bouton */
 .api-button {
     background: #00ff00;
     color: black;
