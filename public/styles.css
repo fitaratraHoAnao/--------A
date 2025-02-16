@@ -2,14 +2,14 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #121212; /* Fond noir */
-    color: white; /* Texte en blanc pour plus de lisibilité */
+    background-color: #121212;
+    color: white;
 }
 
 /* Conteneur principal */
 .container {
     margin-top: 50px;
-    background: #1e1e1e; /* Fond légèrement plus clair pour contraster */
+    background: #1e1e1e;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
@@ -17,48 +17,14 @@ body {
     margin: auto;
 }
 
-/* Boutons */
-button {
-    background: #007BFF;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    cursor: pointer;
-    margin-top: 10px;
-    border-radius: 5px;
-}
-
-button:hover {
-    background: #0056b3;
+/* Masquer les éléments au début */
+.hidden {
+    display: none;
 }
 
 /* ==================== */
-/* 🔹 Menu Latéral 🔹 */
+/* 🔹 Bouton Menu 🔹 */
 /* ==================== */
-.sidebar {
-    width: 250px;
-    position: fixed;
-    left: -250px;
-    top: 0;
-    height: 100%;
-    background: #222; /* Fond gris foncé */
-    padding-top: 20px;
-    transition: 0.3s;
-    box-shadow: 2px 0 5px rgba(255, 255, 255, 0.1);
-}
-.sidebar a {
-    display: block;
-    color: white;
-    padding: 15px;
-    text-decoration: none;
-    transition: 0.3s;
-    cursor: pointer;
-}
-.sidebar a:hover {
-    background: #007BFF;
-}
-
-/* Bouton Menu Hamburger */
 .menu-icon {
     font-size: 30px;
     cursor: pointer;
@@ -73,32 +39,39 @@ button:hover {
 }
 
 /* ==================== */
-/* 🔹 Barre de Recherche 🔹 */
+/* 🔹 Menu Boutons 🔹 */
 /* ==================== */
-.search-container {
-    text-align: center;
-    margin: 20px 0;
+.menu-container {
+    margin-top: 50px;
 }
 
-.search-container input {
-    padding: 8px;
-    width: 200px;
-    border: none;
-    border-radius: 5px;
-    background: #333;
-    color: white;
-}
-
-.search-container button {
-    padding: 8px;
-    cursor: pointer;
+.menu-container button {
     background: #007BFF;
     color: white;
+    padding: 10px 15px;
     border: none;
+    cursor: pointer;
+    margin: 10px;
     border-radius: 5px;
-    margin-left: 5px;
 }
 
-.search-container button:hover {
+.menu-container button:hover {
+    background: #0056b3;
+}
+
+/* ==================== */
+/* 🔹 Bouton API 🔹 */
+/* ==================== */
+button {
+    background: #007BFF;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+button:hover {
     background: #0056b3;
 }
