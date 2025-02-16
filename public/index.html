@@ -8,51 +8,32 @@
 </head>
 <body>
     <header>
-        <!-- Barre de recherche à gauche -->
-        <input type="text" id="searchInput" placeholder="Rechercher une API...">
-
-        <!-- Titre principal -->
         <h1>REST API'S</h1>
-
-        <!-- Icône du menu burger -->
-        <div class="menu-icon" onclick="toggleMenu()">☰</div>
     </header>
 
-    <!-- Menu latéral (sidebar) -->
-    <nav id="sidebar">
-        <ul>
-            <li><a href="#">Accueil</a></li>
-            <li><a href="#">Documentation</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">À propos</a></li>
-        </ul>
-    </nav>
-
-    <!-- Contenu principal -->
     <div class="container">
-        <div class="api-box" data-title="HELLO">
+        <div class="api-box">
             <h2 class="api-title">HELLO</h2>
             <p class="api-category">Salutations</p>
             <p class="api-description">Une API qui vous salue de manière personnalisée.</p>
-            <button class="api-button">Get</button>
+            <button class="api-button" id="getButton1">Get</button>
         </div>
 
-        <div class="api-box" data-title="BIENVENUE">
+        <div class="api-box">
             <h2 class="api-title">BIENVENUE</h2>
             <p class="api-category">Accueil</p>
             <p class="api-description">Une API pour vous accueillir chaleureusement.</p>
-            <button class="api-button">Get</button>
+            <button class="api-button" id="getButton2">Get</button>
         </div>
 
-        <div class="api-box" data-title="LLAMA">
+        <div class="api-box">
             <h2 class="api-title">LLAMA</h2>
             <p class="api-category">Réponses IA</p>
             <p class="api-description">Une API basée sur Llama pour générer des réponses.</p>
-            <button class="api-button">Get</button>
+            <button class="api-button" id="getButton3">Get</button>
         </div>
     </div>
 
     <script src="script.js"></script>
 </body>
-    </html>
-    
+</html>
