@@ -52,6 +52,7 @@ button:hover {
     padding: 15px;
     text-decoration: none;
     transition: 0.3s;
+    cursor: pointer;
 }
 .sidebar a:hover {
     background: #007BFF;
