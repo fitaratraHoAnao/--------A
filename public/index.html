@@ -1,28 +1,39 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API Demo</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REST API</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1 id="apiName1">HELLO</h1>
-        <p id="apiDescription1">Description : Ceci est une API de salutations.</p>
-        <button id="getButton1">Get</button>
-        <p id="response1"></p>
+    <header>
+        <h1>REST API'S</h1>
+    </header>
 
-        <h1 id="apiName2">BIENVENUE</h1>
-        <p id="apiDescription2">Description : Ceci est une API de bienvenue.</p>
-        <button id="getButton2">Get</button>
-        <p id="response2"></p>
+    <div class="container">
+        <div class="api-box">
+            <h2 class="api-title">HELLO</h2>
+            <p class="api-category">Salutations</p>
+            <p class="api-description">Une API qui vous salue de manière personnalisée.</p>
+            <button class="api-button" id="getButton1">Get</button>
+        </div>
 
-        <h1 id="apiName3">LLAMA</h1>
-        <p id="apiDescription3">Description : Ceci est une API de réponse Llama.</p>
-        <button id="getButton3">Get</button>
-        <p id="response3"></p>
-    </div>
-    <script src="script.js"></script>
+        <div class="api-box">
+            <h2 class="api-title">BIENVENUE</h2>
+            <p class="api-category">Accueil</p>
+            <p class="api-description">Une API pour vous accueillir chaleureusement.</p>
+            <button class="api-button" id="getButton2">Get</button>
+        </div>
+
+        <div class="api-box">
+            <h2 class="api-title">LLAMA</h2>
+            <p class="api-category">Réponses IA</p>
+            <p class="api-description">Une API basée sur Llama pour générer des réponses.</p>
+            <button class="api-button" id="getButton3">Get</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
