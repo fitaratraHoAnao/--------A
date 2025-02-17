@@ -8,7 +8,7 @@ const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 router.get('/', async (req, res) => {
     try {
         const question = req.query.question || "Bonjour, comment ça va ?";
-        
+
         const chatCompletion = await groq.chat.completions.create({
             messages: [
                 { role: "user", content: question }
@@ -17,14 +17,13 @@ router.get('/', async (req, res) => {
             temperature: 0.6,
             max_completion_tokens: 4096,
             top_p: 0.95,
-            stream: true,
+            stream: false, // Désactiver le streaming pour récupérer une réponse complète
             stop: null
         });
 
+        // Récupération et nettoyage de la réponse
         let responseText = chatCompletion.choices[0]?.message?.content || "Pas de réponse disponible.";
-
-        // Nettoyer la réponse en supprimant "<think>\n\n</think>\n\n"
-        responseText = responseText.replace(/<think>\s*<\/think>\s*/g, '');
+        responseText = responseText.replace(/<think>|<\/think>/g, "").trim(); // Suppression des balises <think>
 
         res.json({ response: responseText });
 
