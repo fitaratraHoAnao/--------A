@@ -5,7 +5,7 @@ require('dotenv').config();
 const router = express.Router();
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
-router.get('/deepseek', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const question = req.query.question || "Bonjour, comment ça va ?";
         
