@@ -17,3 +17,7 @@ document.getElementById("getButton4").addEventListener("click", () => {
 document.getElementById("getButton5").addEventListener("click", () => {
     window.location.href = "/deepseek?question=Bonjour";
 });
+
+document.getElementById("getButton6").addEventListener("click", () => {
+    window.location.href = "/llama11?question=Bonjour";
+});
