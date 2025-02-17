@@ -8,6 +8,7 @@ const bienvenuRoute = require('./api/bienvenu');
 const llamaRoute = require('./api/llama');
 const deepseekRoute = require('./api/deepseek');
 const deepseekqwenRoute = require('./api/deepseek-qwen');
+const llama11Route = require('./api/llama11');
 
 const PORT = process.env.PORT || 5000;
 
@@ -20,6 +21,7 @@ app.use('/bienvenu', bienvenuRoute);
 app.use('/llama', llamaRoute); // Inclure la route Llama
 app.use('/deepseek', deepseekRoute);
 app.use('/deepseek', deepseekqwenRoute);
+app.use('/llama11', llama11Route);
 
 // Démarrer le serveur
 app.listen(PORT, () => {
