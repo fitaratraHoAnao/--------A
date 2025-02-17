@@ -47,7 +47,7 @@ document.getElementById("getButton6").addEventListener("click", () => {
     window.location.href = `/llama11?question=Bonjour&uid=${encodeURIComponent(uid)}`;
 });
 
-document.getElementById("getButton6").addEventListener("click", () => {
+document.getElementById("getButton7").addEventListener("click", () => {
     const uid = getUID();
     window.location.href = `/qwen-coder?q=Bonjour&uid=${encodeURIComponent(uid)}`;
 });
