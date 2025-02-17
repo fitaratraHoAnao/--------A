@@ -9,7 +9,7 @@ const llamaRoute = require('./api/llama');
 const deepseekRoute = require('./api/deepseek');
 const deepseekqwenRoute = require('./api/deepseek-qwen');
 const llama11Route = require('./api/llama11');
-const qwencoderRoute = require('./api/qwen');
+const qwencoderRoute = require('./api/qwen-coder');
 
 const PORT = process.env.PORT || 5000;
 
