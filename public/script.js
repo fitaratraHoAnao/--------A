@@ -46,3 +46,8 @@ document.getElementById("getButton6").addEventListener("click", () => {
     const uid = getUID();
     window.location.href = `/llama11?question=Bonjour&uid=${encodeURIComponent(uid)}`;
 });
+
+document.getElementById("getButton6").addEventListener("click", () => {
+    const uid = getUID();
+    window.location.href = `/qwen-coder?q=Bonjour&uid=${encodeURIComponent(uid)}`;
+});
