@@ -21,8 +21,11 @@ router.get('/', async (req, res) => {
             stop: null
         });
 
-        const responseText = chatCompletion.choices[0]?.message?.content || "Pas de réponse disponible.";
-        
+        let responseText = chatCompletion.choices[0]?.message?.content || "Pas de réponse disponible.";
+
+        // Nettoyer la réponse en supprimant "<think>\n\n</think>\n\n"
+        responseText = responseText.replace(/<think>\s*<\/think>\s*/g, '');
+
         res.json({ response: responseText });
 
     } catch (error) {
