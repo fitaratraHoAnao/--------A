@@ -9,3 +9,7 @@ document.getElementById("getButton2").addEventListener("click", () => {
 document.getElementById("getButton3").addEventListener("click", () => {
     window.location.href = "/llama?question=Bonjour";
 });
+
+document.getElementById("getButton4").addEventListener("click", () => {
+    window.location.href = "/deepseek?question=Bonjour";
+});
