@@ -37,9 +37,10 @@ router.get('/', async (req, res) => {
             return res.status(400).json({ error: "UID manquant" });
         }
 
+        // Initialisation de l'historique de la conversation sans message "system"
         if (!conversationHistory[uid]) {
             conversationHistory[uid] = [
-                { role: "system", content: "Bonjour, je suis votre assistant." }
+                { role: "user", content: "Bonjour, je suis là pour vous aider !" }
             ];
         }
 
@@ -70,4 +71,3 @@ router.get('/', async (req, res) => {
 });
 
 module.exports = router;
-      
