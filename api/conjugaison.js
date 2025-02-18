@@ -48,7 +48,7 @@ async function scrapeConjugation(verb) {
     }
 }
 
-router.get('/conjugaison', async (req, res) => {
+router.get('/', async (req, res) => {
     const verb = req.query.verbe;
     if (!verb) {
         return res.status(400).json({ error: 'Aucun verbe fourni' });
