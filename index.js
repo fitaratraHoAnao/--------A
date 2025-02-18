@@ -11,6 +11,7 @@ const deepseekqwenRoute = require('./api/deepseek-qwen');
 const llama11Route = require('./api/llama11');
 const qwencoderRoute = require('./api/qwen-coder');
 const geminiRoute = require('./api/gemini');
+const conjugaisonRoute = require('./api/conjugaison');
 
 const PORT = process.env.PORT || 5000;
 
@@ -26,6 +27,7 @@ app.use('/deepseek', deepseekqwenRoute);
 app.use('/llama11', llama11Route);
 app.use('/qwen-coder', qwencoderRoute);
 app.use('/gemini', geminiRoute);
+app.use('/conjugaison', conjugaisonRoute);
 
 // Démarrer le serveur
 app.listen(PORT, () => {
