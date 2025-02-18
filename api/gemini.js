@@ -85,8 +85,8 @@ router.get('/', async (req, res) => {
         const result = await chatSession.sendMessage(prompt);
         const responseText = result.response.text();
 
-        // Ajouter la réponse de Gemini à l'historique
-        conversationHistory[uid].push({ role: "assistant", parts: [{ text: responseText }] });
+        // ✅ Correction : Utilisation de "model" au lieu de "assistant"
+        conversationHistory[uid].push({ role: "model", parts: [{ text: responseText }] });
 
         res.json({ response: responseText });
 
