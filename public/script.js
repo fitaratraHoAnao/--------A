@@ -77,4 +77,8 @@ document.getElementById("getButton10").addEventListener("click", () => {
     window.location.href = `/quiz`;
 });
 
+document.getElementById("getButton11").addEventListener("click", () => {
+    window.location.href = `/translation?text=Bonjour%20le%20monde&langue=en`;
+});
+
 
