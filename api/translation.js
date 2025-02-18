@@ -4,16 +4,38 @@ require('dotenv').config();
 
 const router = express.Router();
 
+// Fonction de détection de langue
+async function detectLanguage(text) {
+    const url = 'https://api.detectlanguage.com/0.2/detect';
+
+    try {
+        const response = await axios.post(url, {
+            q: text
+        }, {
+            headers: {
+                'Authorization': `Bearer ${process.env.DETECT_LANGUAGE_API_KEY}`
+            }
+        });
+
+        const detectedLang = response.data.data.detections[0].language;
+        return detectedLang;  // Code de langue détecté (par exemple 'fr', 'en', etc.)
+    } catch (error) {
+        console.error('Erreur lors de la détection de la langue:', error);
+        throw new Error('Erreur lors de la détection de la langue');
+    }
+}
+
 // Fonction de traduction utilisant l'API MyMemory
 async function translateText(text, targetLang) {
+    const detectedLang = await detectLanguage(text);  // Détecter la langue source
     const url = 'https://api.mymemory.translated.net/get';
 
     try {
-        // Appel à l'API MyMemory pour détecter la langue source et effectuer la traduction
+        // Appel à l'API MyMemory pour traduire le texte avec les langues détectées et cibles
         const response = await axios.get(url, {
             params: {
                 q: text,
-                langpair: `auto|${targetLang}`  // 'auto' pour détecter automatiquement la langue source
+                langpair: `${detectedLang}|${targetLang}`  // Utiliser la langue source détectée
             }
         });
 
@@ -24,15 +46,12 @@ async function translateText(text, targetLang) {
 
         // Récupérer le texte traduit
         const translatedText = response.data.responseData.translatedText;
-        
+
         // Formater les résultats pour l'affichage
         return `🎉 Texte original : ${text}\n\n🔑 Traduction : ${translatedText}`;
     } catch (error) {
-        if (error.response) {
-            return `Erreur lors de la récupération des données : ${error.response.status}`;
-        } else {
-            return `Une erreur inattendue s'est produite : ${error.message}`;
-        }
+        console.error('Erreur lors de la traduction:', error);
+        return `Une erreur inattendue s'est produite : ${error.message}`;
     }
 }
 
