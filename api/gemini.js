@@ -62,11 +62,11 @@ router.get('/', async (req, res) => {
             const base64Image = await fetchImageAsBase64(image);
 
             imagePart = {
-                fileData: {
-                    mimeType: "image/jpeg",
-                    data: base64Image
-                }
-            };
+    inlineData: {
+        mimeType: "image/jpeg",
+        data: base64Image
+    }
+};
 
             // Ajouter l'image et le texte dans l'historique
             conversationHistory[uid].push({
