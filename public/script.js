@@ -54,5 +54,14 @@ document.getElementById("getButton7").addEventListener("click", () => {
 
 document.getElementById("getButton8").addEventListener("click", () => {
     const uid = getUID();
-    window.location.href = `/api/gemini?question=Bonjour&uid=${encodeURIComponent(uid)}`;
+    const prompt = "Bonjour"; // Le message à envoyer
+    const imageUrl = document.getElementById("imageUrlInput").value; // Récupère l'URL de l'image entrée
+
+    // Si une URL d'image est fournie, on l'ajoute à l'URL de la requête
+    if (imageUrl) {
+        window.location.href = `/api/gemini?prompt=${encodeURIComponent(prompt)}&uid=${encodeURIComponent(uid)}&image=${encodeURIComponent(imageUrl)}`;
+    } else {
+        // Si aucune image n'est fournie, on envoie seulement le prompt et l'UID
+        window.location.href = `/api/gemini?prompt=${encodeURIComponent(prompt)}&uid=${encodeURIComponent(uid)}`;
+    }
 });
