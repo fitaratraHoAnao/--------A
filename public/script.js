@@ -59,9 +59,9 @@ document.getElementById("getButton8").addEventListener("click", () => {
 
     // Si une URL d'image est fournie, on l'ajoute à l'URL de la requête
     if (imageUrl) {
-        window.location.href = `/api/gemini?prompt=${encodeURIComponent(prompt)}&uid=${encodeURIComponent(uid)}&image=${encodeURIComponent(imageUrl)}`;
+        window.location.href = `/gemini?prompt=${encodeURIComponent(prompt)}&uid=${encodeURIComponent(uid)}&image=${encodeURIComponent(imageUrl)}`;
     } else {
         // Si aucune image n'est fournie, on envoie seulement le prompt et l'UID
-        window.location.href = `/api/gemini?prompt=${encodeURIComponent(prompt)}&uid=${encodeURIComponent(uid)}`;
+        window.location.href = `/gemini?prompt=${encodeURIComponent(prompt)}&uid=${encodeURIComponent(uid)}`;
     }
 });
