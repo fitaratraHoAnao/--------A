@@ -1,95 +1,85 @@
 const express = require('express');
-const { GoogleGenerativeAI, GoogleAIFileManager } = require('@google/generative-ai');
-const fetch = require('node-fetch');
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 require('dotenv').config();
 
 const router = express.Router();
 const apiKey = process.env.GEMINI_API_KEY;
-const genAI = new GoogleGenerativeAI(apiKey);
-const fileManager = new GoogleAIFileManager(apiKey);
 
-// Stockage de l'historique des conversations (en mémoire pour cet exemple)
+if (!apiKey) {
+    console.error("❌ Erreur : GEMINI_API_KEY non définie dans .env");
+    process.exit(1);
+}
+
+const genAI = new GoogleGenerativeAI(apiKey);
+const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+
+// Stockage en mémoire des conversations
 const conversationHistory = {};
 
 // Configuration du modèle
-const model = genAI.getGenerativeModel({
-  model: "gemini-2.0-flash",
-});
-
 const generationConfig = {
-  temperature: 1,
-  topP: 0.95,
-  topK: 40,
-  maxOutputTokens: 8192,
-  responseMimeType: "text/plain",
+    temperature: 1,
+    topP: 0.95,
+    topK: 40,
+    maxOutputTokens: 8192,
+    responseMimeType: "text/plain",
 };
 
-// Fonction pour uploader une image
-async function uploadImage(imageUrl) {
-  const response = await fetch(imageUrl);
-  if (!response.ok) {
-    throw new Error("Échec du téléchargement de l'image");
-  }
-  const buffer = await response.buffer();
-  const file = await fileManager.uploadFile(buffer, { mimeType: "image/jpeg", displayName: "image" });
-  console.log(`Image téléchargée : ${file.displayName}`);
-  return file;
-}
+router.get('/gemini', async (req, res) => {
+    try {
+        const { prompt, uid, image } = req.query;
 
-router.get('/', async (req, res) => {
-  try {
-    const { prompt, uid, image } = req.query;
+        if (!uid || !prompt) {
+            return res.status(400).json({ error: "UID et prompt requis." });
+        }
 
-    if (!prompt || !uid) {
-      return res.status(400).json({ error: "Le prompt et l'UID sont nécessaires" });
+        // Initialiser l'historique si ce n'est pas encore fait
+        if (!conversationHistory[uid]) {
+            conversationHistory[uid] = [];
+        }
+
+        // Ajouter le message de l'utilisateur dans l'historique
+        const userMessage = { role: "user", parts: [{ text: prompt }] };
+        conversationHistory[uid].push(userMessage);
+
+        let chatSession;
+        
+        if (image) {
+            // Si une image est fournie, créer une session avec l'image
+            chatSession = model.startChat({
+                generationConfig,
+                history: conversationHistory[uid],
+            });
+
+            // Ajouter l'image à la conversation
+            conversationHistory[uid].push({
+                role: "user",
+                parts: [
+                    { text: prompt },
+                    { fileData: { mimeType: "image/jpeg", fileUri: image } }
+                ]
+            });
+        } else {
+            // Session normale sans image
+            chatSession = model.startChat({
+                generationConfig,
+                history: conversationHistory[uid],
+            });
+        }
+
+        // Envoyer la requête à Gemini
+        const result = await chatSession.sendMessage(prompt);
+        const responseText = result.response.text();
+
+        // Ajouter la réponse du modèle à l'historique
+        conversationHistory[uid].push({ role: "assistant", parts: [{ text: responseText }] });
+
+        res.json({ response: responseText });
+
+    } catch (error) {
+        console.error("❌ Erreur API Gemini:", error.response ? error.response.data : error.message);
+        res.status(500).json({ error: "Erreur lors de la requête à Gemini.", details: error.message });
     }
-
-    // Si l'UID n'a pas encore de conversation enregistrée, on initialise l'historique
-    if (!conversationHistory[uid]) {
-      conversationHistory[uid] = [
-        { role: "user", parts: [{ text: "Bonjour, je peux vous aider ?" }] }
-      ];
-    }
-
-    // Ajouter la question de l'utilisateur à l'historique
-    conversationHistory[uid].push({
-      role: "user",
-      parts: [{ text: prompt }],
-    });
-
-    // Si une image est fournie, on l'upload
-    let files = [];
-    if (image) {
-      try {
-        const file = await uploadImage(image);
-        files.push(file);
-      } catch (error) {
-        return res.status(500).json({ error: "Erreur lors du téléchargement de l'image" });
-      }
-    }
-
-    // Créer une session de chat avec l'historique et les fichiers (si image présente)
-    const chatSession = model.startChat({
-      generationConfig,
-      history: conversationHistory[uid],
-    });
-
-    // Effectuer la requête vers Gemini
-    const result = await chatSession.sendMessage(prompt);
-
-    // Ajouter la réponse du modèle à l'historique
-    conversationHistory[uid].push({
-      role: "model",
-      parts: [{ text: result.response.text() }],
-    });
-
-    // Envoyer la réponse au client
-    return res.json({ response: result.response.text() });
-
-  } catch (error) {
-    console.error("Erreur API Gemini:", error);
-    res.status(500).json({ error: "Erreur lors de la requête à Gemini." });
-  }
 });
 
 module.exports = router;
