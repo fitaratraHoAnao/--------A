@@ -13,6 +13,7 @@ const qwencoderRoute = require('./api/qwen-coder');
 const geminiRoute = require('./api/gemini');
 const conjugaisonRoute = require('./api/conjugaison');
 const quizRoute = require('./api/quiz');
+const translationRoute = require('./api/translation');
 
 const PORT = process.env.PORT || 5000;
 
@@ -30,6 +31,7 @@ app.use('/qwen-coder', qwencoderRoute);
 app.use('/gemini', geminiRoute);
 app.use('/conjugaison', conjugaisonRoute);
 app.use('/quiz', quizRoute);
+app.use('/translation', translationRoute);
 
 // Démarrer le serveur
 app.listen(PORT, () => {
