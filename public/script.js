@@ -68,3 +68,7 @@ document.getElementById("getButton8").addEventListener("click", () => {
         window.location.href = `/gemini?prompt=${encodeURIComponent(prompt)}&uid=${encodeURIComponent(uid)}`;
     }
 });
+document.getElementById("getButton8").addEventListener("click", () => {
+    window.location.href = `/conjugaison?verbe=devoir`;
+});
+
