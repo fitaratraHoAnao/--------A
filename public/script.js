@@ -51,3 +51,8 @@ document.getElementById("getButton7").addEventListener("click", () => {
     const uid = getUID();
     window.location.href = `/qwen-coder?q=Bonjour&uid=${encodeURIComponent(uid)}`;
 });
+
+document.getElementById("getButton8").addEventListener("click", () => {
+    const uid = getUID();
+    window.location.href = `/api/gemini?question=Bonjour&uid=${encodeURIComponent(uid)}`;
+});
