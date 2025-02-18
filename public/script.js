@@ -54,14 +54,17 @@ document.getElementById("getButton7").addEventListener("click", () => {
 
 document.getElementById("getButton8").addEventListener("click", () => {
     const uid = getUID();
-    const prompt = "Bonjour"; // Le message à envoyer
+    let prompt = "Qui es-tu ?"; // Question par défaut
+
     const imageUrl = document.getElementById("imageUrlInput").value; // Récupère l'URL de l'image entrée
 
-    // Si une URL d'image est fournie, on l'ajoute à l'URL de la requête
+    // Si une URL d'image est fournie, on change la question
     if (imageUrl) {
+        prompt = "Décrivez cette photo";
+        // On redirige vers l'URL avec l'image
         window.location.href = `/gemini?prompt=${encodeURIComponent(prompt)}&uid=${encodeURIComponent(uid)}&image=${encodeURIComponent(imageUrl)}`;
     } else {
-        // Si aucune image n'est fournie, on envoie seulement le prompt et l'UID
+        // Si aucune image n'est fournie, on envoie uniquement la question par défaut
         window.location.href = `/gemini?prompt=${encodeURIComponent(prompt)}&uid=${encodeURIComponent(uid)}`;
     }
 });
