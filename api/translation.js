@@ -12,7 +12,7 @@ async function translateText(text, targetLang) {
         const response = await axios.get(url, {
             params: {
                 q: text,
-                langpair: `fr|${targetLang}` // On suppose que le texte est en français par défaut
+                langpair: `mg|${targetLang}` // On suppose que le texte est en français par défaut
             }
         });
 
