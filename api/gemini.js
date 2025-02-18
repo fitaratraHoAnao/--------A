@@ -1,4 +1,5 @@
 const express = require('express');
+const axios = require('axios');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 require('dotenv').config();
 
@@ -13,7 +14,7 @@ if (!apiKey) {
 const genAI = new GoogleGenerativeAI(apiKey);
 const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
-// Stockage en mémoire des conversations
+// Stockage des conversations
 const conversationHistory = {};
 
 // Configuration du modèle
@@ -25,7 +26,19 @@ const generationConfig = {
     responseMimeType: "text/plain",
 };
 
-router.get('/gemini', async (req, res) => {
+// Fonction pour convertir une image distante en Base64
+async function fetchImageAsBase64(imageUrl) {
+    try {
+        const response = await axios.get(imageUrl, { responseType: "arraybuffer" });
+        return Buffer.from(response.data, "binary").toString("base64");
+    } catch (error) {
+        console.error("❌ Erreur lors du téléchargement de l'image:", error.message);
+        throw new Error("Impossible de télécharger l'image.");
+    }
+}
+
+// Route principale
+router.get('/', async (req, res) => {
     try {
         const { prompt, uid, image } = req.query;
 
@@ -33,51 +46,52 @@ router.get('/gemini', async (req, res) => {
             return res.status(400).json({ error: "UID et prompt requis." });
         }
 
-        // Initialiser l'historique si ce n'est pas encore fait
         if (!conversationHistory[uid]) {
             conversationHistory[uid] = [];
         }
 
-        // Ajouter le message de l'utilisateur dans l'historique
+        // Ajouter le message de l'utilisateur à l'historique
         const userMessage = { role: "user", parts: [{ text: prompt }] };
         conversationHistory[uid].push(userMessage);
 
         let chatSession;
-        
-        if (image) {
-            // Si une image est fournie, créer une session avec l'image
-            chatSession = model.startChat({
-                generationConfig,
-                history: conversationHistory[uid],
-            });
+        let imagePart = null;
 
-            // Ajouter l'image à la conversation
+        if (image) {
+            // Convertir l'image en base64
+            const base64Image = await fetchImageAsBase64(image);
+
+            imagePart = {
+                fileData: {
+                    mimeType: "image/jpeg",
+                    data: base64Image
+                }
+            };
+
+            // Ajouter l'image et le texte dans l'historique
             conversationHistory[uid].push({
                 role: "user",
-                parts: [
-                    { text: prompt },
-                    { fileData: { mimeType: "image/jpeg", fileUri: image } }
-                ]
-            });
-        } else {
-            // Session normale sans image
-            chatSession = model.startChat({
-                generationConfig,
-                history: conversationHistory[uid],
+                parts: [{ text: prompt }, imagePart]
             });
         }
+
+        // Créer une session avec l'historique
+        chatSession = model.startChat({
+            generationConfig,
+            history: conversationHistory[uid],
+        });
 
         // Envoyer la requête à Gemini
         const result = await chatSession.sendMessage(prompt);
         const responseText = result.response.text();
 
-        // Ajouter la réponse du modèle à l'historique
+        // Ajouter la réponse de Gemini à l'historique
         conversationHistory[uid].push({ role: "assistant", parts: [{ text: responseText }] });
 
         res.json({ response: responseText });
 
     } catch (error) {
-        console.error("❌ Erreur API Gemini:", error.response ? error.response.data : error.message);
+        console.error("❌ Erreur API Gemini:", error.message);
         res.status(500).json({ error: "Erreur lors de la requête à Gemini.", details: error.message });
     }
 });
