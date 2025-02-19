@@ -5,29 +5,6 @@ require('dotenv').config();
 
 const router = express.Router();
 
-// Fonction pour récupérer la liste des livres bibliques
-async function getBooks() {
-    const url = "https://baiboly.katolika.org/";
-
-    try {
-        const response = await axios.get(url);
-        const $ = cheerio.load(response.data);
-        const books = [];
-
-        $(".row a").each((i, el) => {
-            const bookText = $(el).text().trim();
-            if (bookText && !["mamaky baiboly mitohy", "lisitry ny voatahiry"].includes(bookText)) {
-                books.push(bookText);
-            }
-        });
-
-        if (books.length === 0) throw new Error("Aucun livre trouvé");
-        return books;
-    } catch (error) {
-        throw new Error("Impossible d'accéder au site");
-    }
-}
-
 // Fonction pour récupérer les chapitres d'un livre donné
 async function getChapters(boky) {
     const url = `https://baiboly.katolika.org/boky/${boky}`;
@@ -46,28 +23,22 @@ async function getChapters(boky) {
         });
 
         // Liste des chapitres à exclure
-        const excludeChapters = [
-            "1. Fitadiavana",
-            "2. Boky rehetra",
-            "3. Hamaky",
-            "4. Fanazavana",
-            "5. Hisoratra anarana",
-            "6. Hiditra"
+        const exclusions = [
+            "Fitadiavana", "Boky rehetra", "Hamaky", "Fanazavana", "Hisoratra anarana", "Hiditra"
         ];
 
-        // Nettoyage et suppression des éléments non souhaités
-        const uniqueChapters = [...new Set(chapters)]
-            .filter(chap => chap !== "Fandraisana" && chap !== "Eugene Heriniaina") // Exclusions existantes
-            .filter(chap => !excludeChapters.includes(chap)); // Exclure les chapitres non souhaités
+        // Filtrer les chapitres indésirables et renuméroter
+        const filteredChapters = chapters
+            .filter(chap => !exclusions.includes(chap))
+            .map((chap, i) => `${i + 1}. ${chap}`);
 
-        const chaptersWithNumbers = uniqueChapters.map((chap, i) => `${i + 1}. ${chap}`);
-
-        if (chaptersWithNumbers.length === 0) throw new Error("Aucun chapitre trouvé");
-        return { title, chapters: chaptersWithNumbers };
+        if (filteredChapters.length === 0) throw new Error("Aucun chapitre valide trouvé");
+        return { title, chapitres: filteredChapters };
     } catch (error) {
         throw new Error("Erreur lors de la récupération des chapitres");
     }
 }
+
 
 // Route pour récupérer la liste des livres
 router.get('/baiboly', async (req, res) => {
