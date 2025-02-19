@@ -89,5 +89,12 @@ document.getElementById("getButton13").addEventListener("click", () => {
     window.location.href = "/tadiavina?boky=Jenezy"; // Redirection vers la deuxième route
 });
 
+document.getElementById("getButton14").addEventListener("click", () => {
+    window.location.href = "/catego?boky=rehetra"; // Redirection vers la première route
+});
+
+document.getElementById("getButton15").addEventListener("click", () => {
+    window.location.href = "/tadiavina?boky=Jenezy"; // Redirection vers la deuxième route
+});
 
 
