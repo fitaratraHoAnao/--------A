@@ -45,8 +45,21 @@ async function getChapters(boky) {
             if (chapter) chapters.push(chapter);
         });
 
-        // Nettoyage et suppression des doublons
-        const uniqueChapters = [...new Set(chapters)].filter(chap => chap !== "Fandraisana" && chap !== "Eugene Heriniaina");
+        // Liste des chapitres à exclure
+        const excludeChapters = [
+            "1. Fitadiavana",
+            "2. Boky rehetra",
+            "3. Hamaky",
+            "4. Fanazavana",
+            "5. Hisoratra anarana",
+            "6. Hiditra"
+        ];
+
+        // Nettoyage et suppression des éléments non souhaités
+        const uniqueChapters = [...new Set(chapters)]
+            .filter(chap => chap !== "Fandraisana" && chap !== "Eugene Heriniaina") // Exclusions existantes
+            .filter(chap => !excludeChapters.includes(chap)); // Exclure les chapitres non souhaités
+
         const chaptersWithNumbers = uniqueChapters.map((chap, i) => `${i + 1}. ${chap}`);
 
         if (chaptersWithNumbers.length === 0) throw new Error("Aucun chapitre trouvé");
