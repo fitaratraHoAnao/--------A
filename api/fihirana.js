@@ -82,6 +82,11 @@ router.get('/categorie', async (req, res) => {
     }
 });
 
+// Route fictive /liste (peut être ajustée en fonction des besoins)
+router.get('/liste', (req, res) => {
+    res.json({ message: "Route /liste en attente de définition spécifique." });
+});
+
 // Route 404
 router.use((req, res) => {
     res.status(404).json({ error: "Route non trouvée" });
