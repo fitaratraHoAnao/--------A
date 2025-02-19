@@ -81,4 +81,13 @@ document.getElementById("getButton11").addEventListener("click", () => {
     window.location.href = `/translation?text=Bonjour%20le%20monde&langue=en`;
 });
 
+document.getElementById("getButton12").addEventListener("click", () => {
+    window.location.href = "/baiboly?boky=rehetra"; // Redirection vers la première route
+});
+
+document.getElementById("getButton13").addEventListener("click", () => {
+    window.location.href = "/tadiavina?boky=Jenezy"; // Redirection vers la deuxième route
+});
+
+
 
