@@ -27,7 +27,7 @@ const scraper = async (verset) => {
 };
 
 // Route GET pour rechercher un verset spécifique
-router.get('/recherche', async (req, res) => {
+router.get('/', async (req, res) => {
     const verset = req.query.verser; // Récupérer le verset depuis les paramètres GET
 
     if (!verset) {
