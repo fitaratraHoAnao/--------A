@@ -5,29 +5,6 @@ require('dotenv').config();
 
 const router = express.Router();
 
-// Fonction pour récupérer la liste des livres bibliques
-async function getBooks() {
-    const url = "https://baiboly.katolika.org/";
-
-    try {
-        const response = await axios.get(url);
-        const $ = cheerio.load(response.data);
-        const books = [];
-
-        $(".row a").each((i, el) => {
-            const bookText = $(el).text().trim();
-            if (bookText && !["mamaky baiboly mitohy", "lisitry ny voatahiry"].includes(bookText)) {
-                books.push(bookText);
-            }
-        });
-
-        if (books.length === 0) throw new Error("Aucun livre trouvé");
-        return books;
-    } catch (error) {
-        throw new Error("Impossible d'accéder au site");
-    }
-}
-
 // Fonction pour récupérer les chapitres d'un livre donné
 async function getChapters(boky) {
     const url = `https://baiboly.katolika.org/boky/${boky}`;
@@ -45,26 +22,17 @@ async function getChapters(boky) {
             if (chapter) chapters.push(chapter);
         });
 
-        // Nettoyage et suppression des doublons
-        const uniqueChapters = [...new Set(chapters)].filter(chap => chap !== "Fandraisana" && chap !== "Eugene Heriniaina");
-        const chaptersWithNumbers = uniqueChapters.map((chap, i) => `${i + 1}. ${chap}`);
+        // Suppression des chapitres non désirés
+        const unwantedChapters = ["Fitadiavana", "Boky rehetra", "Hamaky", "Fanazavana", "Hisoratra anarana", "Hiditra"];
+        const filteredChapters = chapters.filter(chap => !unwantedChapters.includes(chap));
 
-        if (chaptersWithNumbers.length === 0) throw new Error("Aucun chapitre trouvé");
-        return { title, chapters: chaptersWithNumbers };
+        if (filteredChapters.length === 0) throw new Error("Aucun chapitre trouvé");
+
+        return { title, chapitres: filteredChapters };
     } catch (error) {
         throw new Error("Erreur lors de la récupération des chapitres");
     }
 }
-
-// Route pour récupérer la liste des livres
-router.get('/baiboly', async (req, res) => {
-    try {
-        const books = await getBooks();
-        res.json({ livres: books });
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
 
 // Route pour récupérer les chapitres d'un livre spécifique
 router.get('/tadiavina', async (req, res) => {
@@ -76,7 +44,7 @@ router.get('/tadiavina', async (req, res) => {
 
     try {
         const result = await getChapters(boky);
-        res.json({ titre: result.title, chapitres: result.chapters });
+        res.json({ titre: result.title, chapitres: result.chapitres });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
