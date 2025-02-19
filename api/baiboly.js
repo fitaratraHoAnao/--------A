@@ -50,6 +50,7 @@ async function getChapters(boky) {
             "Fitadiavana",
             "Boky rehetra",
             "Hamaky",
+            "Fandraisana",
             "Fanazavana",
             "Hisoratra anarana",
             "Hiditra"
