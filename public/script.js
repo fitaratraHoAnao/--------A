@@ -90,16 +90,10 @@ document.getElementById("getButton13").addEventListener("click", () => {
 });
 
 document.getElementById("getButton14").addEventListener("click", () => {
-    window.location.href = "/hira?categorie=ny-fanahy-masina&titre=177-ry-fanahy-mpanazava-mitariha-anay-izao"; // Redirection vers la deuxième route
+    window.location.href = "/recherche?verser=gen.3.19"; // Redirection vers la deuxième route
 });
 
-document.getElementById("getButton15").addEventListener("click", () => {
-    window.location.href = "/categorie?liste=FFPM"; // Redirection vers la deuxième route
-});
 
-document.getElementById("getButton16").addEventListener("click", () => {
-    window.location.href = "/liste?titre=ny-fanahy-masina"; // Redirection vers la première route
-});
 
 
 
