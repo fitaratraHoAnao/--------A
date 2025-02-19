@@ -39,7 +39,7 @@ app.use('/translation', translationRoute);
 // Routes à ajouter si elles ne sont pas déjà définies dans vos fichiers de routes
 app.use('/', baibolyRoute); // Ajoutez la logique pour la route baiboly
 app.use('/', tadiavinaRoute); // Ajoutez la logique pour la route tadiavina
-app.use('/recherche', verserRoute);
+app.use('/verset', verserRoute);
 
 app._router.stack.forEach((middleware) => {
     if (middleware.route) {
