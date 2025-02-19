@@ -15,6 +15,7 @@ const conjugaisonRoute = require('./api/conjugaison');
 const quizRoute = require('./api/quiz');
 const translationRoute = require('./api/translation');
 const baibolyRoute = require('./api/baiboly');
+const tadiavinaRoute = require('./api/baiboly');
 
 const PORT = process.env.PORT || 5000;
 
