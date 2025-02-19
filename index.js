@@ -16,7 +16,7 @@ const quizRoute = require('./api/quiz');
 const translationRoute = require('./api/translation');
 const baibolyRoute = require('./api/baiboly');
 const tadiavinaRoute = require('./api/baiboly');
-const verserRoute = require('./api/verser');
+const rechercheRoute = require('./api/verser');
 
 
 const PORT = process.env.PORT || 5000;
@@ -39,7 +39,7 @@ app.use('/translation', translationRoute);
 // Routes à ajouter si elles ne sont pas déjà définies dans vos fichiers de routes
 app.use('/', baibolyRoute); // Ajoutez la logique pour la route baiboly
 app.use('/', tadiavinaRoute); // Ajoutez la logique pour la route tadiavina
-app.use('/', verserRoute);
+app.use('/', rechercheRoute);
 
 // Démarrer le serveur
 app.listen(PORT, () => {
