@@ -2,7 +2,6 @@ const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-const app = express();
 const router = express.Router();
 
 // Fonction pour scraper un verset spécifique
@@ -29,20 +28,15 @@ const scraper = async (verset) => {
 };
 
 // Route GET pour rechercher un verset spécifique
-app.get('/', async (req, res) => {
-    const verset = req.query.verset; // Correction du paramètre 'verser' en 'verset'
+router.get('/recherche', async (req, res) => {
+    const verset = req.query.verser; // Récupérer le verset depuis les paramètres GET
 
     if (!verset) {
-        return res.status(400).json({ error: 'Veuillez spécifier un verset via le paramètre verset' });
+        return res.status(400).json({ error: 'Veuillez spécifier un verset via le paramètre verser' });
     }
-    
-    const resultat = await scraper(verset);
-    res.json(resultat);
-});
 
-// Route 404 pour les chemins non trouvés
-router.use((req, res) => {
-    res.status(404).json({ error: 'Route non trouvée' });
+    const result = await scraper(verset); // Scraper le verset
+    res.json(result); // Retourner les résultats sous forme JSON
 });
 
 module.exports = router;
