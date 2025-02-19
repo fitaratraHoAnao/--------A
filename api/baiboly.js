@@ -5,89 +5,70 @@ require('dotenv').config();
 
 const router = express.Router();
 
-// Fonction pour récupérer les livres
+// Fonction pour récupérer la liste des livres bibliques
 async function getBooks() {
     const url = "https://baiboly.katolika.org/";
 
     try {
         const response = await axios.get(url);
-
-        if (response.status !== 200) {
-            throw new Error("Impossible d'accéder au site");
-        }
-
         const $ = cheerio.load(response.data);
-        const bookElements = $(".row a");
+        const books = [];
 
-        let books = [];
-        bookElements.each((i, el) => {
+        $(".row a").each((i, el) => {
             const bookText = $(el).text().trim();
-            if (bookText && bookText !== "mamaky baiboly mitohy" && bookText !== "lisitry ny voatahiry") {
+            if (bookText && !["mamaky baiboly mitohy", "lisitry ny voatahiry"].includes(bookText)) {
                 books.push(bookText);
             }
         });
 
+        if (books.length === 0) throw new Error("Aucun livre trouvé");
         return books;
     } catch (error) {
         throw new Error("Impossible d'accéder au site");
     }
 }
 
-// Fonction pour récupérer les chapitres d'un livre
+// Fonction pour récupérer les chapitres d'un livre donné
 async function getChapters(boky) {
     const url = `https://baiboly.katolika.org/boky/${boky}`;
 
     try {
         const response = await axios.get(url);
-
-        if (response.status !== 200) {
-            throw new Error("Impossible d'accéder au site");
-        }
-
         const $ = cheerio.load(response.data);
         const title = $("h1").text().trim();
 
-        if (!title) {
-            throw new Error("Livre introuvable");
-        }
+        if (!title) throw new Error("Livre introuvable");
 
         const chapters = [];
         $("div a").each((i, el) => {
             const chapter = $(el).text().trim();
-            if (chapter) {
-                chapters.push(chapter);
-            }
+            if (chapter) chapters.push(chapter);
         });
 
-        if (chapters.length === 0) {
-            throw new Error("Aucun chapitre trouvé");
-        }
+        // Nettoyage et suppression des doublons
+        const uniqueChapters = [...new Set(chapters)].filter(chap => chap !== "Fandraisana" && chap !== "Eugene Heriniaina");
+        const chaptersWithNumbers = uniqueChapters.map((chap, i) => `${i + 1}. ${chap}`);
 
-        // Supprimer les doublons et les éléments non désirés
-        const uniqueChapters = [...new Set(chapters)].filter(chapter => chapter !== "Fandraisana" && chapter !== "Eugene Heriniaina");
-
-        // Ajouter des numéros au début de chaque chapitre
-        const chaptersWithNumbers = uniqueChapters.map((chapter, i) => `${i + 1}. ${chapter}`);
-
+        if (chaptersWithNumbers.length === 0) throw new Error("Aucun chapitre trouvé");
         return { title, chapters: chaptersWithNumbers };
     } catch (error) {
-        throw new Error(error.message);
+        throw new Error("Erreur lors de la récupération des chapitres");
     }
 }
 
-// Route pour récupérer les livres
+// Route pour récupérer la liste des livres
 router.get('/baiboly', async (req, res) => {
     try {
         const books = await getBooks();
-        res.json(books);
+        res.json({ livres: books });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 });
 
-// Route pour récupérer les chapitres d'un livre
+// Route pour récupérer les chapitres d'un livre spécifique
 router.get('/tadiavina', async (req, res) => {
-    const boky = req.query.boky;
+    const { boky } = req.query;
 
     if (!boky) {
         return res.status(400).json({ error: "Veuillez fournir un livre avec le paramètre 'boky'" });
@@ -95,7 +76,7 @@ router.get('/tadiavina', async (req, res) => {
 
     try {
         const result = await getChapters(boky);
-        res.json({ titre: result.title, chapitres: result.chapitres });
+        res.json({ titre: result.title, chapitres: result.chapters });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
