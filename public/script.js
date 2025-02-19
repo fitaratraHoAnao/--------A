@@ -82,16 +82,18 @@ document.getElementById("getButton11").addEventListener("click", () => {
 });
 
 document.getElementById("getButton12").addEventListener("click", () => {
+    window.location.href = "/recherche?verser=gen.3.19"; // Redirection vers la deuxième route
+});
+
+
+document.getElementById("getButton13").addEventListener("click", () => {
     window.location.href = "/baiboly?boky=rehetra"; // Redirection vers la première route
 });
 
-document.getElementById("getButton13").addEventListener("click", () => {
+document.getElementById("getButton14").addEventListener("click", () => {
     window.location.href = "/tadiavina?boky=Jenezy"; // Redirection vers la deuxième route
 });
 
-document.getElementById("getButton14").addEventListener("click", () => {
-    window.location.href = "/recherche?verser=gen.3.19"; // Redirection vers la deuxième route
-});
 
 
 
