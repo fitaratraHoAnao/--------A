@@ -14,6 +14,7 @@ const geminiRoute = require('./api/gemini');
 const conjugaisonRoute = require('./api/conjugaison');
 const quizRoute = require('./api/quiz');
 const translationRoute = require('./api/translation');
+const baibolyRoute = require('./api/baiboly');
 
 const PORT = process.env.PORT || 5000;
 
@@ -32,6 +33,10 @@ app.use('/gemini', geminiRoute);
 app.use('/conjugaison', conjugaisonRoute);
 app.use('/quiz', quizRoute);
 app.use('/translation', translationRoute);
+// Routes à ajouter si elles ne sont pas déjà définies dans vos fichiers de routes
+app.use('/baiboly', baibolyRoute); // Ajoutez la logique pour la route baiboly
+app.use('/tadiavina', tadiavinaRoute); // Ajoutez la logique pour la route tadiavina
+
 
 // Démarrer le serveur
 app.listen(PORT, () => {
