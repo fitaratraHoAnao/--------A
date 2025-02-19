@@ -41,6 +41,11 @@ app.use('/', baibolyRoute); // Ajoutez la logique pour la route baiboly
 app.use('/', tadiavinaRoute); // Ajoutez la logique pour la route tadiavina
 app.use('/api', rechercheRoute);
 
+app._router.stack.forEach((middleware) => {
+    if (middleware.route) {
+        console.log(middleware.route.path); // Affiche les chemins des routes
+    }
+});
 // Démarrer le serveur
 app.listen(PORT, () => {
     console.log(`Serveur démarré sur http://localhost:${PORT}`);
