@@ -1,95 +1,41 @@
 const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
-require('dotenv').config();
-
 const router = express.Router();
 
-// Fonction pour récupérer les paroles d'une chanson spécifique
-async function getSongLyrics(category, title) {
-    const url = `https://fihirana.org/ffpm/${category}/${title}/`;
+// Fonction pour scraper un verset spécifique
+const scraper = async (verset) => {
+    const url = `https://www.bible.com/fr/bible/873/${verset}`;
 
     try {
-        const response = await axios.get(url);
-        const $ = cheerio.load(response.data);
-        const lyrics = [];
+        const { data } = await axios.get(url); // Récupérer la page HTML
+        const $ = cheerio.load(data); // Charger le contenu HTML avec Cheerio
 
-        $('div.entry-content p').each((i, el) => {
-            const malagasyText = $(el).text().trim();
-            lyrics.push(malagasyText);
-        });
+        // Extraire les informations nécessaires
+        const contenu = $('meta[name="description"]').attr('content'); // Description dans meta
+        const reference = verset.replace('GENESISY', 'Genesisy'); // Ajuster la référence si besoin
 
-        if (lyrics.length === 0) throw new Error("Paroles non trouvées");
-        return lyrics;
+        // Retourner les données sous forme d'objet JSON sans le titre
+        return {
+            verset: reference,
+            contenu: contenu
+        };
     } catch (error) {
-        throw new Error("Impossible d'accéder au site");
+        console.error("Erreur lors du scraping: ", error);
+        return { error: 'Erreur lors du scraping du verset' };
     }
-}
+};
 
-// Fonction pour récupérer les catégories de chansons
-async function getCategories() {
-    const url = "https://fihirana.org/category/ffpm/ny-telo-izay-iray/";
+// Route GET pour rechercher un verset spécifique
+router.get('/recherche', async (req, res) => {
+    const verset = req.query.verser; // Récupérer le verset depuis les paramètres GET
 
-    try {
-        const response = await axios.get(url);
-        const $ = cheerio.load(response.data);
-        const categories = [];
-
-        $('.widget_categories ul li a').each((i, el) => {
-            const text = $(el).text().trim().replace("\u2013", "-");
-            if (!["Fihirana Fanampiny", "Non classé"].includes(text)) {
-                categories.push(text);
-            }
-        });
-
-        if (categories.length === 0) throw new Error("Aucune catégorie trouvée");
-        return categories;
-    } catch (error) {
-        throw new Error("Impossible d'accéder au site");
-    }
-}
-
-// Route pour récupérer les paroles d'une chanson spécifique
-router.get('/hira', async (req, res) => {
-    const category = req.query.categorie || 'ny-fanahy-masina';
-    const title = req.query.titre;
-
-    if (!title) {
-        return res.status(400).json({ error: "Le paramètre 'titre' est requis" });
+    if (!verset) {
+        return res.status(400).json({ error: 'Veuillez spécifier un verset via le paramètre verser' });
     }
 
-    try {
-        const lyrics = await getSongLyrics(category, title);
-        res.json({ titre: title, paroles: lyrics });
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
-
-// Route pour récupérer les catégories de chansons
-router.get('/categorie', async (req, res) => {
-    const liste = req.query.liste;
-
-    if (liste !== "FFPM") {
-        return res.status(400).json({ error: "Paramètre 'liste' invalide" });
-    }
-
-    try {
-        const categories = await getCategories();
-        res.json({ CATEGORIES: categories });
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
-
-// Route fictive /liste (peut être ajustée en fonction des besoins)
-router.get('/liste', (req, res) => {
-    res.json({ message: "Route /liste en attente de définition spécifique." });
-});
-
-// Route 404
-router.use((req, res) => {
-    res.status(404).json({ error: "Route non trouvée" });
+    const result = await scraper(verset); // Scraper le verset
+    res.json(result); // Retourner les résultats sous forme JSON
 });
 
 module.exports = router;
