@@ -98,6 +98,10 @@ document.getElementById("getButton15").addEventListener("click", () => {
     window.location.href = "/recherche?synonym=allongement"; // Redirection vers la deuxième route
 });
 
+document.getElementById("getButton16").addEventListener("click", () => {
+    window.location.href = "/recherche?antonym=patience"; // Redirection vers la deuxième route
+});
+
 
 
 
