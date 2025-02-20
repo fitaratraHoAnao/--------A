@@ -106,6 +106,10 @@ document.getElementById("getButton17").addEventListener("click", () => {
     window.location.href = "/api?photo=Lémurien"; // Redirection vers la deuxième route
 });
 
+document.getElementById("getButton18").addEventListener("click", () => {
+    window.location.href = "/gem29?question=Bonjour"; // Redirection vers la deuxième route
+});
+
 
 
 
