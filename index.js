@@ -20,6 +20,7 @@ const fihiranaRoute = require('./api/fihirana');
 const rechercheRoute = require('./api/synonyme');
 const antonymRoute = require('./api/antonyme');
 const photoRoute = require('./api/photo');
+const gem29Route = require('./api/gem29');
 
 
 const PORT = process.env.PORT || 5000;
@@ -43,6 +44,7 @@ app.use('/hira', fihiranaRoute);
 app.use('/recherche', rechercheRoute);
 app.use('/search', antonymRoute);
 app.use('/api', photoRoute);
+app.use('/gem29', gem29Route);
 
 // Routes à ajouter si elles ne sont pas déjà définies dans vos fichiers de routes
 app.use('/', baibolyRoute); // Ajoutez la logique pour la route baiboly
