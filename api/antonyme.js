@@ -6,7 +6,7 @@ require('dotenv').config();
 const router = express.Router();
 
 
-router.get('/', async (req, res) => {
+router.get('/api', async (req, res) => {
     const mot = req.query.antonym;
 
     if (!mot) {
