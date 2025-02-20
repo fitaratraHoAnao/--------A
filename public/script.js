@@ -106,8 +106,10 @@ document.getElementById("getButton17").addEventListener("click", () => {
     window.location.href = "/api?photo=Lémurien"; // Redirection vers la deuxième route
 });
 
+// Event Listener pour le bouton 1
 document.getElementById("getButton18").addEventListener("click", () => {
-    window.location.href = "/gem29?question=Bonjour"; // Redirection vers la deuxième route
+    const uid = getUID(); // Récupérer ou générer un UID
+    window.location.href = `/gem29?question=Bonjour&uid=${encodeURIComponent(uid)}`;
 });
 
 
