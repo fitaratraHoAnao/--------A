@@ -17,6 +17,7 @@ const translationRoute = require('./api/translation');
 const baibolyRoute = require('./api/baiboly');
 const tadiavinaRoute = require('./api/baiboly');
 const fihiranaRoute = require('./api/fihirana');
+const rechercheRoute = require('./api/synonyme');
 const rechercheRoute = require('./api/antonyme');
 
 
@@ -38,7 +39,6 @@ app.use('/conjugaison', conjugaisonRoute);
 app.use('/quiz', quizRoute);
 app.use('/translation', translationRoute);
 app.use('/hira', fihiranaRoute);
-app.use('/recherche', rechercheRoute);
 app.use('/recherche', rechercheRoute);
 
 // Routes à ajouter si elles ne sont pas déjà définies dans vos fichiers de routes
