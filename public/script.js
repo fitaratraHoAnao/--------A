@@ -102,6 +102,10 @@ document.getElementById("getButton16").addEventListener("click", () => {
     window.location.href = "/search?antonym=allongement"; // Redirection vers la deuxième route
 });
 
+document.getElementById("getButton17").addEventListener("click", () => {
+    window.location.href = "/api?photo=Lémurien"; // Redirection vers la deuxième route
+});
+
 
 
 
