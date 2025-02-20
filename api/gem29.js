@@ -10,7 +10,7 @@ const conversationHistory = {};
 
 router.get('/', async (req, res) => {
     try {
-        const question = req.query.question || "Bonjour, comment ça va ?";
+        const question = req.query.question || "Bonsoir";
         const uid = req.query.uid; // Récupération de l'UID de la requête
 
         if (!uid) {
@@ -34,12 +34,14 @@ router.get('/', async (req, res) => {
             temperature: 1,
             max_completion_tokens: 1024,
             top_p: 1,
-            stream: true,
-            stop: null,
+            stream: true
         });
 
-        // Récupérer la réponse de l'API
-        const responseText = chatCompletion.choices[0]?.message?.content || "Pas de réponse disponible.";
+        // Récupérer la réponse de l'API (en streaming)
+        let responseText = '';
+        for await (const chunk of chatCompletion) {
+            responseText += chunk.choices[0]?.delta?.content || '';
+        }
 
         // Ajouter la réponse du modèle à l'historique
         conversationHistory[uid].push({ role: "assistant", content: responseText });
