@@ -82,7 +82,7 @@ document.getElementById("getButton11").addEventListener("click", () => {
 });
 
 document.getElementById("getButton12").addEventListener("click", () => {
-    window.location.href = "/verset/recherche?verser=gen.3.19"; // Redirection vers la deuxième route
+    window.location.href = "/hira?ffpm=Andriamanitra"; // Redirection vers la deuxième route
 });
 
 
