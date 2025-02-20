@@ -1,9 +1,12 @@
 const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
+require('dotenv').config();
+
+const router = express.Router();
 
 
-app.get('/', async (req, res) => {
+router.get('/', async (req, res) => {
     const mot = req.query.antonym;
 
     if (!mot) {
@@ -36,4 +39,9 @@ app.get('/', async (req, res) => {
         res.status(500).json({ error: 'Une erreur est survenue lors de la récupération des antonymes.' });
     }
 });
+// Route 404
+router.use((req, res) => {
+    res.status(404).json({ error: "Route non trouvée" });
+});
 
+module.exports = router;
