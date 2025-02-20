@@ -16,7 +16,7 @@ const quizRoute = require('./api/quiz');
 const translationRoute = require('./api/translation');
 const baibolyRoute = require('./api/baiboly');
 const tadiavinaRoute = require('./api/baiboly');
-const verserRoute = require('./api/verser');
+const fihiranaRoute = require('./api/fihirana');
 
 
 const PORT = process.env.PORT || 5000;
@@ -36,10 +36,11 @@ app.use('/gemini', geminiRoute);
 app.use('/conjugaison', conjugaisonRoute);
 app.use('/quiz', quizRoute);
 app.use('/translation', translationRoute);
+app.use('/hira', fihiranaRoute);
+
 // Routes à ajouter si elles ne sont pas déjà définies dans vos fichiers de routes
 app.use('/', baibolyRoute); // Ajoutez la logique pour la route baiboly
 app.use('/', tadiavinaRoute); // Ajoutez la logique pour la route tadiavina
-app.use('/verset', verserRoute);
 
 app._router.stack.forEach((middleware) => {
     if (middleware.route) {
