@@ -5,7 +5,7 @@ const cheerio = require('cheerio');
 require('dotenv').config();
 
 const router = express.Router();
-router.get('/recherche', async (req, res) => {
+router.get('/', async (req, res) => {
     const mot = req.query.synonym;
 
     if (!mot) {
