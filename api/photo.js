@@ -2,9 +2,11 @@ const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
 
+require('dotenv').config();
 
+const router = express.Router();
 
-router.get('/recherche', async (req, res) => {
+router.get('/', async (req, res) => {
     const query = req.query.photo || 'carte de Madagascar';
     const maxPages = parseInt(req.query.pages) || 3;
     const images = [];
@@ -39,4 +41,11 @@ router.get('/recherche', async (req, res) => {
 
     res.json({ images });
 });
+
+// Route 404
+router.use((req, res) => {
+    res.status(404).json({ error: "Route non trouvée" });
+});
+
+module.exports = router;
 
