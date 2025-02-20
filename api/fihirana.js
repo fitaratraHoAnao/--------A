@@ -3,9 +3,6 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 require('dotenv').config();
 
-const app = express();
-const port = process.env.PORT || 3000;
-
 const router = express.Router();
 
 // Fonction de scraping des cantiques sur une page donnée
@@ -88,10 +85,9 @@ router.use((req, res) => {
   res.status(404).json({ error: 'Route non trouvée' });
 });
 
-app.use(router);
-
-app.listen(port, () => {
-  console.log(`Serveur lancé sur http://localhost:${port}`);
+// Route 404
+router.use((req, res) => {
+    res.status(404).json({ error: "Route non trouvée" });
 });
 
 module.exports = router;
