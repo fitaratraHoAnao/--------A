@@ -99,7 +99,7 @@ document.getElementById("getButton15").addEventListener("click", () => {
 });
 
 document.getElementById("getButton16").addEventListener("click", () => {
-    window.location.href = "/api/recherche?antonym=patience"; // Redirection vers la deuxième route
+    window.location.href = "/recherche?antonym=patience"; // Redirection vers la deuxième route
 });
 
 
