@@ -40,6 +40,7 @@ app.use('/quiz', quizRoute);
 app.use('/translation', translationRoute);
 app.use('/hira', fihiranaRoute);
 app.use('/recherche', rechercheRoute);
+app.use('/api/recherche', rechercheRoute);
 
 // Routes à ajouter si elles ne sont pas déjà définies dans vos fichiers de routes
 app.use('/', baibolyRoute); // Ajoutez la logique pour la route baiboly
