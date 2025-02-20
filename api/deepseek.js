@@ -10,7 +10,7 @@ const conversationHistory = {};
 
 router.get('/', async (req, res) => {
     try {
-        const question = req.query.question || "Bonjour, comment ça va ?";
+        const question = req.query.question || "Bonsoir";
         const uid = req.query.uid; // Récupération de l'UID de la requête
 
         if (!uid) {
@@ -30,15 +30,18 @@ router.get('/', async (req, res) => {
         // Effectuer l'appel à l'API Groq avec l'historique de la conversation
         const chatCompletion = await groq.chat.completions.create({
             messages: conversationHistory[uid], // Inclure l'historique des messages
-            model: "deepseek-r1-distill-llama-70b",
-            temperature: 0.6,
-            max_completion_tokens: 4096,
-            top_p: 0.95,
-            stream: false
+            model: "gemma2-9b-it",
+            temperature: 1,
+            max_completion_tokens: 1024,
+            top_p: 1,
+            stream: true
         });
 
-        // Récupérer la réponse de l'API
-        const responseText = chatCompletion.choices[0]?.message?.content || "Pas de réponse disponible.";
+        // Récupérer la réponse de l'API (en streaming)
+        let responseText = '';
+        for await (const chunk of chatCompletion) {
+            responseText += chunk.choices[0]?.delta?.content || '';
+        }
 
         // Ajouter la réponse du modèle à l'historique
         conversationHistory[uid].push({ role: "assistant", content: responseText });
