@@ -2,8 +2,10 @@ const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
 
+require('dotenv').config();
 
-app.get('/recherche', async (req, res) => {
+const router = express.Router();
+router.get('/recherche', async (req, res) => {
     const mot = req.query.synonym;
 
     if (!mot) {
@@ -36,3 +38,9 @@ app.get('/recherche', async (req, res) => {
         res.status(500).json({ error: 'Une erreur est survenue lors de la récupération des synonymes.' });
     }
 });
+// Route 404
+router.use((req, res) => {
+    res.status(404).json({ error: "Route non trouvée" });
+});
+
+module.exports = router;
