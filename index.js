@@ -20,7 +20,7 @@ const fihiranaRoute = require('./api/fihirana');
 const rechercheRoute = require('./api/synonyme');
 const antonymRoute = require('./api/antonyme');
 const photoRoute = require('./api/photo');
-const gem29Route = require('./api/gem29');
+const gem29Route = require('./api/gemma');
 
 
 const PORT = process.env.PORT || 5000;
