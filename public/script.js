@@ -113,7 +113,7 @@ document.getElementById("getButton18").addEventListener("click", () => {
 });
 
 document.getElementById("getButton19").addEventListener("click", () => {
-    window.location.href = "/parole?mpihira=Princio&titre=Allo Jesosy"; // Redirection vers la deuxième route
+    window.location.href = "/parole?mpihira=Princio&titre=Allo%20jesosy"; // Redirection vers la deuxième route
 });
 
 document.getElementById("getButton20").addEventListener("click", () => {
