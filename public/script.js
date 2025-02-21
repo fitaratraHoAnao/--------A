@@ -112,6 +112,13 @@ document.getElementById("getButton18").addEventListener("click", () => {
     window.location.href = `/gem29?question=Bonjour&uid=${encodeURIComponent(uid)}`;
 });
 
+document.getElementById("getButton19").addEventListener("click", () => {
+    window.location.href = "/mpanakanto?anarana=Melky"; // Redirection vers la première route
+});
+
+document.getElementById("getButton14").addEventListener("click", () => {
+    window.location.href = "/parole?mpihirana=&titre="; // Redirection vers la deuxième route
+});
 
 
 
