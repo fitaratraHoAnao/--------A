@@ -32,9 +32,13 @@ router.get('/', async (req, res) => {
         parolesTexte.forEach(line => {
             const ligne = line.trim();
             if (ligne && ![
-                titreChanson, // Évite le titre en double
-                'Ahitsio', 
-                '(Nalaina tao amin\'ny tononkira.serasera.org)'
+                titreChanson,
+                'Ahitsio',
+                '(Nalaina tao amin\'ny tononkira.serasera.org)',
+                'Rohy:',
+                'Adikao',
+                'Hametraka hevitra',
+                'Midira aloha'
             ].includes(ligne)) {
                 paroles.push(ligne);
             }
@@ -56,6 +60,7 @@ router.get('/', async (req, res) => {
         res.status(500).json({ error: 'Impossible de récupérer les informations.', details: error.message });
     }
 });
+
 // Route 404
 router.use((req, res) => {
     res.status(404).json({ error: "Route non trouvée" });
