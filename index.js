@@ -21,7 +21,7 @@ const rechercheRoute = require('./api/synonyme');
 const antonymRoute = require('./api/antonyme');
 const photoRoute = require('./api/photo');
 const gem29Route = require('./api/gemma');
-const metyparoleRoute = require('./api/tononkira');
+const paroleRoute = require('./api/tononkira');
 const tenampanakantoRoute = require('./api/tononkira');
 
 
@@ -51,7 +51,7 @@ app.use('/gem29', gem29Route);
 // Routes à ajouter si elles ne sont pas déjà définies dans vos fichiers de routes
 app.use('/', baibolyRoute); // Ajoutez la logique pour la route baiboly
 app.use('/', tadiavinaRoute); // Ajoutez la logique pour la route tadiavina
-app.use('/', metyparoleRoute); // Ajoutez la logique pour la route baiboly
+app.use('/parole', paroleRoute); // Ajoutez la logique pour la route baiboly
 app.use('/', tenampanakantoRoute); // Ajoutez la logique pour la route tadiavina
 
 app._router.stack.forEach((middleware) => {
