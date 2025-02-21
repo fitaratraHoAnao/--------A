@@ -74,7 +74,7 @@ router.get('/mpanakanto', async (req, res) => {
 
         // Extraction des chansons
         const hiranNy = [];
-        $('h3:contains("Hiran'i")').nextAll('div.border').find('a').each((_, link) => {
+        $('h3:contains("Hiran\\'i")').nextAll('div.border').find('a').each((_, link) => {
             const hira = $(link).text().trim();
             if (hira) hiranNy.push(hira);
         });
