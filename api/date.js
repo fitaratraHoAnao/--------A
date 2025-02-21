@@ -1,10 +1,11 @@
 const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
+require('dotenv').config();
 
+const router = express.Router();
 
-
-router.get('/date', async (req, res) => {
+router.get('/', async (req, res) => {
   // Récupérer la variable 'heure' depuis le paramètre de la requête, par défaut 'madagascar'
   const location = (req.query.heure || 'madagascar').toLowerCase();
   const url = `https://www.timeanddate.com/time/zone/${location}`;
@@ -30,4 +31,9 @@ router.get('/date', async (req, res) => {
     res.status(500).json({ error: "Erreur lors de la récupération des informations" });
   }
 });
+// Route 404
+router.use((req, res) => {
+    res.status(404).json({ error: "Route non trouvée" });
+});
 
+module.exports = router;
