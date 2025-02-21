@@ -112,11 +112,11 @@ document.getElementById("getButton18").addEventListener("click", () => {
     window.location.href = `/gem29?question=Bonjour&uid=${encodeURIComponent(uid)}`;
 });
 
-document.getElementById("getButton20").addEventListener("click", () => {
+document.getElementById("getButton19").addEventListener("click", () => {
     window.location.href = "/mpanakanto?anarana=Princio"; // Redirection vers la première route
 });
 
-document.getElementById("getButton19").addEventListener("click", () => {
+document.getElementById("getButton20").addEventListener("click", () => {
     window.location.href = "/parole?mpihira=Princio&titre=Allo%20jesosy"; // Redirection vers la deuxième route
 });
 
