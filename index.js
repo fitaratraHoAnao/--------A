@@ -21,8 +21,8 @@ const rechercheRoute = require('./api/synonyme');
 const antonymRoute = require('./api/antonyme');
 const photoRoute = require('./api/photo');
 const gem29Route = require('./api/gemma');
-const paroleRoute = require('./api/tononkira');
 const mpanakantoRoute = require('./api/mpanakanto');
+const paroleRoute = require('./api/tononkira');
 
 
 const PORT = process.env.PORT || 5000;
@@ -47,8 +47,9 @@ app.use('/recherche', rechercheRoute);
 app.use('/search', antonymRoute);
 app.use('/api', photoRoute);
 app.use('/gem29', gem29Route);
-app.use('/parole', paroleRoute); // Ajoutez la logique pour la route baiboly
 app.use('/mpanakanto', mpanakantoRoute); // Ajoutez la logique pour la route tadiavina
+app.use('/parole', paroleRoute); // Ajoutez la logique pour la route baiboly
+
 
 
 // Routes à ajouter si elles ne sont pas déjà définies dans vos fichiers de routes
