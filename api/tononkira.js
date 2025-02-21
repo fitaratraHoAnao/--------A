@@ -1,10 +1,11 @@
 const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
+require('dotenv').config();
 
+const router = express.Router();
 
-
-router.get('/parole', async (req, res) => {
+router.get('/', async (req, res) => {
     const { mpihira, titre } = req.query;
 
     if (!mpihira || !titre) {
@@ -55,3 +56,9 @@ router.get('/parole', async (req, res) => {
         res.status(500).json({ error: 'Impossible de récupérer les informations.', details: error.message });
     }
 });
+// Route 404
+router.use((req, res) => {
+    res.status(404).json({ error: "Route non trouvée" });
+});
+
+module.exports = router;
