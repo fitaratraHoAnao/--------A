@@ -24,6 +24,21 @@ router.get('/', async (req, res) => {
         // Extraire le titre
         const titreChanson = $('h2.border-bottom').text().trim();
 
+        // Supprimer les sections de commentaires et avis
+        $('div.border.d-flex.mb-3.p-2').remove();
+
+        // Lignes à exclure
+        const exclusions = [
+            titreChanson,
+            'Ahitsio',
+            '(Nalaina tao amin\'ny tononkira.serasera.org)',
+            'Rohy:',
+            'Adikao',
+            'Hametraka hevitra',
+            'Midira aloha',
+            'Hevitra'
+        ];
+
         // Extraire les paroles et filtrer les lignes indésirables
         let paroles = [];
         $('div.col-md-8').find('br').replaceWith('\n');
@@ -31,15 +46,7 @@ router.get('/', async (req, res) => {
 
         parolesTexte.forEach(line => {
             const ligne = line.trim();
-            if (ligne && ![
-                titreChanson,
-                'Ahitsio',
-                '(Nalaina tao amin\'ny tononkira.serasera.org)',
-                'Rohy:',
-                'Adikao',
-                'Hametraka hevitra',
-                'Midira aloha'
-            ].includes(ligne)) {
+            if (ligne && !exclusions.some(exclu => ligne.includes(exclu)) && !/\(\d{2}\/\d{2}\/\d{4} \d{2}:\d{2}\)/.test(ligne)) {
                 paroles.push(ligne);
             }
         });
