@@ -1,9 +1,8 @@
 const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
-require('dotenv').config();
 
-const router = express.Router();
+
 
 router.get('/parole', async (req, res) => {
     const { mpihira, titre } = req.query;
@@ -31,7 +30,11 @@ router.get('/parole', async (req, res) => {
 
         parolesTexte.forEach(line => {
             const ligne = line.trim();
-            if (ligne && ![titreChanson, 'Ahitsio', "(Nalaina tao amin'ny tononkira.serasera.org)"].includes(ligne)) {
+            if (ligne && ![
+                titreChanson, // Évite le titre en double
+                'Ahitsio', 
+                '(Nalaina tao amin\'ny tononkira.serasera.org)'
+            ].includes(ligne)) {
                 paroles.push(ligne);
             }
         });
@@ -42,8 +45,8 @@ router.get('/parole', async (req, res) => {
         // Construire la réponse JSON
         const resultat = {
             titre: titreChanson,
-            paroles,
-            mp3
+            paroles: paroles,
+            mp3: mp3
         };
 
         res.json(resultat);
@@ -52,49 +55,3 @@ router.get('/parole', async (req, res) => {
         res.status(500).json({ error: 'Impossible de récupérer les informations.', details: error.message });
     }
 });
-
-router.get('/mpanakanto', async (req, res) => {
-    const { anarana } = req.query;
-
-    if (!anarana) {
-        return res.status(400).json({ error: "Paramètre 'anarana' requis" });
-    }
-
-    const url = `https://tononkira.serasera.org/mpihira/${anarana.toLowerCase()}`;
-
-    try {
-        const { data } = await axios.get(url);
-        const $ = cheerio.load(data);
-
-        // Extraction de l'image avec un chemin absolu
-        let imagePath = $('.col-md-4 img.img-fluid').attr('src');
-        const sary = imagePath && !imagePath.includes('logo.jpg')
-            ? (imagePath.startsWith('http') ? imagePath : `https://tononkira.serasera.org${imagePath}`)
-            : 'Image non disponible';
-
-        // Extraction des chansons
-        const hiranNy = [];
-        $('h3:contains("Hiran\'i")').nextAll('div.border').find('a').each((_, link) => {
-            const hira = $(link).text().trim();
-            if (hira) hiranNy.push(hira);
-        });
-
-        // Résultat JSON
-        const resultat = {
-            sary,
-            [`hiran'i ${anarana}`]: hiranNy.length > 0 ? hiranNy : ['Aucune chanson trouvée']
-        };
-
-        res.json(resultat);
-    } catch (error) {
-        console.error('Erreur de récupération :', error.message);
-        res.status(500).json({ error: 'Impossible de récupérer les données', details: error.message });
-    }
-});
-
-// Route 404
-router.use((req, res) => {
-    res.status(404).json({ error: "Route non trouvée" });
-});
-
-module.exports = router;
