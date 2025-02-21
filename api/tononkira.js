@@ -74,7 +74,7 @@ router.get('/mpanakanto', async (req, res) => {
 
         // Extraction des chansons
         const hiranNy = [];
-        $('h3:contains("Hiran\\'i")').nextAll('div.border').find('a').each((_, link) => {
+        $('h3:contains("Hiran\'i")').nextAll('div.border').find('a').each((_, link) => {
             const hira = $(link).text().trim();
             if (hira) hiranNy.push(hira);
         });
@@ -91,6 +91,7 @@ router.get('/mpanakanto', async (req, res) => {
         res.status(500).json({ error: 'Impossible de récupérer les données', details: error.message });
     }
 });
+
 // Route 404
 router.use((req, res) => {
     res.status(404).json({ error: "Route non trouvée" });
