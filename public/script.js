@@ -14,7 +14,7 @@ function getUID() {
 // Event Listener pour le bouton 1
 document.getElementById("getButton1").addEventListener("click", () => {
     const uid = getUID(); // Récupérer ou générer un UID
-    window.location.href = `/hello?question=Hello&uid=${encodeURIComponent(uid)}`;
+    window.location.href = `/date?heure=Madagascar`;
 });
 
 // Event Listener pour le bouton 2
