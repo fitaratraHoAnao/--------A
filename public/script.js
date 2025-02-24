@@ -120,6 +120,14 @@ document.getElementById("getButton20").addEventListener("click", () => {
     window.location.href = "/parole?mpihira=Princio&titre=Allo%20jesosy"; // Redirection vers la deuxième route
 });
 
+document.getElementById("getButton21").addEventListener("click", () => {
+    window.location.href = "/create"; // Redirection vers la deuxième route
+});
+
+document.getElementById("getButton22").addEventListener("click", () => {
+    window.location.href = "/inbox?mail="; // Redirection vers la deuxième route
+});
+
 
 
 
