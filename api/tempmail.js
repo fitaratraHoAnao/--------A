@@ -6,7 +6,7 @@ dotenv.config(); // Charger les variables d'environnement à partir du fichier .
 const router = express.Router();
 
 // Route pour créer une adresse email temporaire
-router.get('/create', async (req, res) => {
+router.get('generate/create', async (req, res) => {
     try {
         const response = await axios.post('https://api.tempmail.lol/v2/inbox/create', {}, {
             headers: {
@@ -31,7 +31,7 @@ router.get('/create', async (req, res) => {
 });
 
 // Route pour vérifier la boîte mail avec l'adresse et le token
-router.get('/inbox', async (req, res) => {
+router.get('message/inbox', async (req, res) => {
     const { mail } = req.query;
 
     if (!mail || mail !== tempMail.address) {
