@@ -1,6 +1,7 @@
 const express = require('express');
 const axios = require('axios');
-require('dotenv').config();
+const dotenv = require('dotenv');
+dotenv.config();
 
 const router = express.Router();
 
@@ -11,12 +12,11 @@ router.get('/create', async (req, res) => {
     try {
         const response = await axios.post('https://api.tempmail.lol/v2/inbox/create', {}, {
             headers: {
-                'Authorization': `Bearer ${process.env.API_KEY}` // Utilisation de la clé API dans les en-têtes
+                'Authorization': `Bearer ${process.env.API_KEY}`
             }
         });
-        const { address, token } = response.data;
 
-        // Stocker l'email et le token
+        const { address, token } = response.data;
         tempMail = { address, token };
 
         res.json({
@@ -31,4 +31,5 @@ router.get('/create', async (req, res) => {
     }
 });
 
-module.exports = router;
+module.exports = { router, tempMail };
+    
