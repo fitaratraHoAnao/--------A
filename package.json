@@ -10,6 +10,7 @@
     "express": "^4.18.2",
     "axios" :"^1.7.9",
     "dotenv": "^10.0.0",
+    "whatwg-url": "^8.7.0",
     "groq-sdk": "latest",
     "fs": "^0.0.1-security",
     "path": "^0.12.7",
