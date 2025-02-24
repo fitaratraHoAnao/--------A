@@ -8,7 +8,7 @@ const router = express.Router();
 let tempMail = {}; // Stocke l'email et le token
 
 // Route pour créer une adresse email temporaire
-router.get('/create', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const response = await axios.post('https://api.tempmail.lol/v2/inbox/create', {}, {
             headers: {
