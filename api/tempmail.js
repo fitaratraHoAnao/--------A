@@ -60,4 +60,10 @@ router.get('/inbox', async (req, res) => {
         res.status(500).json({ error: 'Impossible de récupérer les emails.' });
     }
 });
+// Route 404
+router.use((req, res) => {
+    res.status(404).json({ error: "Route non trouvée" });
+});
+
+module.exports = router;
               
