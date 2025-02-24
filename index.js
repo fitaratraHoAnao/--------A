@@ -57,7 +57,9 @@ app.use('/parole', paroleRoute); // Ajoutez la logique pour la route baiboly
 // Routes à ajouter si elles ne sont pas déjà définies dans vos fichiers de routes
 app.use('/', baibolyRoute); // Ajoutez la logique pour la route baiboly
 app.use('/', tadiavinaRoute); // Ajoutez la logique pour la route tadiavina
-app.use('/api/tempmail', createRoute); // Routes pour /create et /inbox
+app.use('/create', createRoute); // Routes pour /create et /inbox
+app.use('/inbox', inboxRoute);
+
 app._router.stack.forEach((middleware) => {
     if (middleware.route) {
         console.log(middleware.route.path); // Affiche les chemins des routes
