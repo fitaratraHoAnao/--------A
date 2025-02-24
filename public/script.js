@@ -125,7 +125,7 @@ document.getElementById("getButton21").addEventListener("click", () => {
 });
 
 document.getElementById("getButton22").addEventListener("click", () => {
-    window.location.href = "/inbox?mail="; // Redirection vers la deuxième route
+    window.location.href = "/inbox?mail=bouzoun8630@undeadbank.com"; // Redirection vers la deuxième route
 });
 
 
