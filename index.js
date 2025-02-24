@@ -24,18 +24,19 @@ const gem29Route = require('./api/gemma');
 const mpanakantoRoute = require('./api/mpanakanto');
 const paroleRoute = require('./api/tononkira');
 const createRoute = require('./api/generate');
-const inboxRoute = require('./api/inbox'); // Vous pouvez utiliser un seul import si vous gérez bien les routes dans tempmail.js
+const inboxRoute = require('./api/inbox'); 
+const genRoutes = require('./gen');
+const inboxRoutes = require('./boite');
+
+
 
 
 const PORT = process.env.PORT || 5000;
-
-// Servir les fichiers statiques (HTML, CSS, JS)
 app.use(express.static(path.join(__dirname, 'public')));
-
-// Définir les routes API
+app.use(express.json());
 app.use('/date', dateRoute);
 app.use('/bienvenu', bienvenuRoute);
-app.use('/llama', llamaRoute); // Inclure la route Llama
+app.use('/llama', llamaRoute); 
 app.use('/deepseek', deepseekRoute);
 app.use('/deepseek', deepseekqwenRoute);
 app.use('/llama11', llama11Route);
@@ -49,23 +50,19 @@ app.use('/recherche', rechercheRoute);
 app.use('/search', antonymRoute);
 app.use('/api', photoRoute);
 app.use('/gem29', gem29Route);
-app.use('/mpanakanto', mpanakantoRoute); // Ajoutez la logique pour la route tadiavina
-app.use('/parole', paroleRoute); // Ajoutez la logique pour la route baiboly
-
-
-
-// Routes à ajouter si elles ne sont pas déjà définies dans vos fichiers de routes
-app.use('/', baibolyRoute); // Ajoutez la logique pour la route baiboly
-app.use('/', tadiavinaRoute); // Ajoutez la logique pour la route tadiavina
-app.use('/create', createRoute); // Routes pour /create et /inbox
+app.use('/mpanakanto', mpanakantoRoute);
+app.use('/parole', paroleRoute);
+app.use('/', baibolyRoute); 
+app.use('/', tadiavinaRoute);
+app.use('/create', genRoute);
 app.use('/inbox', inboxRoute);
 
 app._router.stack.forEach((middleware) => {
     if (middleware.route) {
-        console.log(middleware.route.path); // Affiche les chemins des routes
+        console.log(middleware.route.path);
     }
 });
-// Démarrer le serveur
+
 app.listen(PORT, () => {
     console.log(`Serveur démarré sur http://localhost:${PORT}`);
 });
