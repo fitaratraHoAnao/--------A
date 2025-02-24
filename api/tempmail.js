@@ -3,10 +3,7 @@ const axios = require('axios');
 const dotenv = require('dotenv');
 dotenv.config(); // Charger les variables d'environnement à partir du fichier .env
 
-
 const router = express.Router();
-
-let tempMail = {}; // Stocke l'email et le token
 
 // Route pour créer une adresse email temporaire
 router.get('/create', async (req, res) => {
@@ -60,10 +57,10 @@ router.get('/inbox', async (req, res) => {
         res.status(500).json({ error: 'Impossible de récupérer les emails.' });
     }
 });
+
 // Route 404
 router.use((req, res) => {
     res.status(404).json({ error: "Route non trouvée" });
 });
 
 module.exports = router;
-              
