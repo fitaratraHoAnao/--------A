@@ -1,3 +1,6 @@
+const dotenv = require('dotenv');
+dotenv.config();
+
 module.exports = (tempMail) => {
     const router = require('express').Router();
     const axios = require('axios');
