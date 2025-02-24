@@ -49,10 +49,8 @@ app.use('/gem29', gem29Route);
 app.use('/mpanakanto', mpanakantoRoute);
 app.use('/parole', paroleRoute);
 app.use('/baiboly', baibolyRoute);
-app.use('/create', generateRoute);
-app.use('/inbox', inboxRoute);
-app.use('/gen', genRoutes);
-app.use('/boite', inboxRoutes);
+app.use('/create', genRoutes);
+app.use('/inbox', inboxRoutes);
 
 app._router.stack.forEach((middleware) => {
     if (middleware.route) {
