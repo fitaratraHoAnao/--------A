@@ -22,8 +22,6 @@ const photoRoute = require('./api/photo');
 const gem29Route = require('./api/gemma');
 const mpanakantoRoute = require('./api/mpanakanto');
 const paroleRoute = require('./api/tononkira');
-const generateRoute = require('./api/generate');
-const inboxRoute = require('./api/inbox');
 const genRoutes = require('./gen');
 const inboxRoutes = require('./boite');
 
