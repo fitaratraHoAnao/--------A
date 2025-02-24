@@ -8,7 +8,7 @@ const { tempMail } = require('./gen'); // Importation des emails stockés depuis
 const router = express.Router();
 
 // Route pour vérifier la boîte mail avec l'adresse et le token
-router.get('/inbox', async (req, res) => {
+router.get('/', async (req, res) => {
     const { mail } = req.query;
 
     if (!mail || mail !== tempMail.address) {
