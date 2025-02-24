@@ -1,34 +1,27 @@
-const express = require('express');
-const axios = require('axios');
-const dotenv = require('dotenv');
-dotenv.config();
+module.exports = (tempMail) => {
+    const router = require('express').Router();
+    const axios = require('axios');
 
-const router = express.Router();
+    router.get('/', async (req, res) => {
+        try {
+            const response = await axios.post('https://api.tempmail.lol/v2/inbox/create', {}, {
+                headers: { 'Authorization': `Bearer ${process.env.API_KEY}` }
+            });
 
-let tempMail = {}; // Stocke l'email et le token
+            tempMail.address = response.data.address;
+            tempMail.token = response.data.token;
 
-// Route pour créer une adresse email temporaire
-router.get('/', async (req, res) => {
-    try {
-        const response = await axios.post('https://api.tempmail.lol/v2/inbox/create', {}, {
-            headers: {
-                'Authorization': `Bearer ${process.env.API_KEY}`
-            }
-        });
+            res.json({
+                message: "Adresse email temporaire créée avec succès.",
+                email: tempMail.address,
+                token: tempMail.token
+            });
 
-        const { address, token } = response.data;
-        tempMail = { address, token };
+        } catch (error) {
+            console.error('Erreur lors de la création de l’email temporaire :', error.message);
+            res.status(500).json({ error: 'Impossible de créer l’email temporaire.' });
+        }
+    });
 
-        res.json({
-            message: "Adresse email temporaire créée avec succès.",
-            email: address,
-            token: token
-        });
-
-    } catch (error) {
-        console.error('Erreur lors de la création de l’email temporaire :', error.response?.data || error.message);
-        res.status(500).json({ error: 'Impossible de créer l’email temporaire.' });
-    }
-});
-
-module.exports = router;
+    return router;
+};
