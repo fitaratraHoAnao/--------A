@@ -120,26 +120,13 @@ document.getElementById("getButton20").addEventListener("click", () => {
     window.location.href = "/parole?mpihira=Princio&titre=Allo%20jesosy"; // Redirection vers la deuxième route
 });
 
-let generatedEmail = ""; // Variable pour stocker l'email généré
-
-document.getElementById("getButton21").addEventListener("click", async () => {
-    const response = await fetch('/api/tempmail/create');
-    const data = await response.json();
-    if (data.email) {
-        generatedEmail = data.email; // Stocker l'email généré
-        alert(`Adresse email générée : ${generatedEmail}`);
-    }
+document.getElementById("getButton21").addEventListener("click", () => {
+    window.location.href = "/api/tempmail/create"; // Redirection vers la deuxième route
 });
 
 document.getElementById("getButton22").addEventListener("click", () => {
-    if (generatedEmail) {
-        window.location.href = `/api/tempmail/inbox?mail=${generatedEmail}`; // Rediriger vers la boîte de réception avec l'email généré
-    } else {
-        alert("Veuillez d'abord générer un email.");
-    }
+    window.location.href = "/api/tempmail/inbox?mail="; // Redirection vers la deuxième route
 });
-
-
 
 
 
