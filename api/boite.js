@@ -3,7 +3,7 @@ const axios = require('axios');
 const dotenv = require('dotenv');
 dotenv.config();
 
-const { tempMail } = require('./api/gen'); // Importation des emails stockés depuis gen.js
+const { tempMail } = require('./gen'); // Importation des emails stockés depuis gen.js
 
 const router = express.Router();
 
