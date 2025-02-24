@@ -1,12 +1,13 @@
 const express = require('express');
 const axios = require('axios');
-const dotenv = require('dotenv');
-dotenv.config(); // Charger les variables d'environnement à partir du fichier .env
+require('dotenv').config();
 
 const router = express.Router();
 
+let tempMail = {}; // Stocke l'email et le token
+
 // Route pour créer une adresse email temporaire
-router.get('/generate', async (req, res) => {
+router.get('/create', async (req, res) => {
     try {
         const response = await axios.post('https://api.tempmail.lol/v2/inbox/create', {}, {
             headers: {
@@ -31,7 +32,7 @@ router.get('/generate', async (req, res) => {
 });
 
 // Route pour vérifier la boîte mail avec l'adresse et le token
-router.get('/message', async (req, res) => {
+router.get('/inbox', async (req, res) => {
     const { mail } = req.query;
 
     if (!mail || mail !== tempMail.address) {
@@ -56,11 +57,6 @@ router.get('/message', async (req, res) => {
         console.error('Erreur lors de la récupération des emails :', error.response?.data || error.message);
         res.status(500).json({ error: 'Impossible de récupérer les emails.' });
     }
-});
-
-// Route 404
-router.use((req, res) => {
-    res.status(404).json({ error: "Route non trouvée" });
 });
 
 module.exports = router;
