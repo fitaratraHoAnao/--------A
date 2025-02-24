@@ -23,8 +23,8 @@ const photoRoute = require('./api/photo');
 const gem29Route = require('./api/gemma');
 const mpanakantoRoute = require('./api/mpanakanto');
 const paroleRoute = require('./api/tononkira');
-const createRoute = require('./api/tempmail');
-const inboxRoute = require('./api/tempmail'); // Vous pouvez utiliser un seul import si vous gérez bien les routes dans tempmail.js
+const createRoute = require('./api/generate');
+const inboxRoute = require('./api/inbox'); // Vous pouvez utiliser un seul import si vous gérez bien les routes dans tempmail.js
 
 
 const PORT = process.env.PORT || 5000;
