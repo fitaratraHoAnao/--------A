@@ -3,6 +3,8 @@ const app = express();
 const path = require('path');
 require('dotenv').config();
 
+let tempMail = {}; // Variable globale
+
 const dateRoute = require('./api/date');
 const bienvenuRoute = require('./api/bienvenu');
 const llamaRoute = require('./api/llama');
@@ -22,8 +24,7 @@ const photoRoute = require('./api/photo');
 const gem29Route = require('./api/gemma');
 const mpanakantoRoute = require('./api/mpanakanto');
 const paroleRoute = require('./api/tononkira');
-const genRoutes = require('./api/gen');
-const inboxRoutes = require('./api/boite');
+
 
 const PORT = process.env.PORT || 5000;
 
@@ -49,9 +50,8 @@ app.use('/gem29', gem29Route);
 app.use('/mpanakanto', mpanakantoRoute);
 app.use('/parole', paroleRoute);
 app.use('/baiboly', baibolyRoute);
-app.use('/create', genRoutes);
-app.use('/inbox', inboxRoutes);
-
+app.use('/create', require('./api/gen')(tempMail));
+app.use('/inbox', require('./api/boite')(tempMail));
 app._router.stack.forEach((middleware) => {
     if (middleware.route) {
         console.log(middleware.route.path);
