@@ -1,10 +1,11 @@
 const express = require('express');
 const axios = require('axios');
-require('dotenv').config();
+const dotenv = require('dotenv');
+dotenv.config();
+
+const { tempMail } = require('./gen'); // Importation des emails stockés depuis gen.js
 
 const router = express.Router();
-
-let tempMail = {}; // Cette variable doit être partagée ou accessible par d'autres modules
 
 // Route pour vérifier la boîte mail avec l'adresse et le token
 router.get('/inbox', async (req, res) => {
@@ -17,9 +18,10 @@ router.get('/inbox', async (req, res) => {
     try {
         const response = await axios.get(`https://api.tempmail.lol/v2/inbox?token=${tempMail.token}`, {
             headers: {
-                'Authorization': `Bearer ${process.env.API_KEY}` // Utilisation de la clé API dans les en-têtes
+                'Authorization': `Bearer ${process.env.API_KEY}`
             }
         });
+
         const { emails, expired } = response.data;
 
         res.json({
