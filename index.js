@@ -22,8 +22,8 @@ const photoRoute = require('./api/photo');
 const gem29Route = require('./api/gemma');
 const mpanakantoRoute = require('./api/mpanakanto');
 const paroleRoute = require('./api/tononkira');
-const genRoutes = require('./gen');
-const inboxRoutes = require('./boite');
+const genRoutes = require('./api/gen');
+const inboxRoutes = require('./api/boite');
 
 const PORT = process.env.PORT || 5000;
 
