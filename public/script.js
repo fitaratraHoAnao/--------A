@@ -1,4 +1,3 @@
-// Fonction pour obtenir ou générer un UID unique
 function getUID() {
     let uid = localStorage.getItem("uid");
 
