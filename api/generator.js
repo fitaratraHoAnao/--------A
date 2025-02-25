@@ -3,7 +3,7 @@ const axios = require('axios');
 require('dotenv').config();
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+router.get('/generer', async (req, res) => {
     const { mail } = req.query;
 
     if (mail !== 'create') {
