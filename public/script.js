@@ -120,7 +120,7 @@ document.getElementById("getButton20").addEventListener("click", () => {
 });
 
 document.getElementById("getButton21").addEventListener("click", () => {
-    window.location.href = "/generer?mail=create"; // Redirection vers la deuxième route
+    window.location.href = "/generer"; // Redirection vers la deuxième route
 });
 
 document.getElementById("getButton22").addEventListener("click", () => {
