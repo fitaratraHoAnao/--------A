@@ -57,7 +57,7 @@ app.use('/', baibolyRoute);
 app.use("/", tadiavinaRoute);
 app.use('/create', require('./api/gen')(tempMail));
 app.use('/inbox', require('./api/boite')(tempMail));
-app.use("/llamanew", llamanewRoute);
+app.use("/", llamanewRoute);
 app.use("/wiki", wikipediaRoute);
 
 
