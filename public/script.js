@@ -132,6 +132,10 @@ document.getElementById("getButton23").addEventListener("click", () => {
     window.location.href = "/llamanew?question=bonjour&uid=123"; // Redirection vers la deuxième route
 });
 
+document.getElementById("getButton24").addEventListener("click", () => {
+    window.location.href = "/wiki?recherche=Kolontsaina"; // Redirection vers la deuxième route
+});
+
 
 
 
