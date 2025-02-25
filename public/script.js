@@ -124,7 +124,7 @@ document.getElementById("getButton21").addEventListener("click", () => {
 });
 
 document.getElementById("getButton22").addEventListener("click", () => {
-    window.location.href = "inbox?message=lydia94483@5n51.undeadbank.com"; // Redirection vers la deuxième route
+    window.location.href = "inbox?message="; // Redirection vers la deuxième route
 });
 
 document.getElementById("getButton23").addEventListener("click", () => {
