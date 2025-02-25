@@ -57,8 +57,8 @@ app.use('/mpanakanto', mpanakantoRoute);
 app.use('/parole', paroleRoute);
 app.use('/', baibolyRoute);
 app.use("/", tadiavinaRoute);
-app.use('/mail', tempMailRoute(tempMail));
-app.use('/box', inboxRoute(tempMail));
+app.use('/', tempMailRoute(tempMail));
+app.use('/', inboxRoute(tempMail));
 app.use("/", llamanewRoute);
 app.use("/wiki", wikipediaRoute);
 
