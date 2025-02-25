@@ -49,7 +49,7 @@ app.use('/translation', translationRoute);
 app.use('/hira', fihiranaRoute);
 app.use('/recherche', rechercheRoute);
 app.use('/search', antonymRoute);
-app.use('/photo', photoRoute);
+app.use('/api', photoRoute);
 app.use('/gem29', gem29Route);
 app.use('/mpanakanto', mpanakantoRoute);
 app.use('/parole', paroleRoute);
