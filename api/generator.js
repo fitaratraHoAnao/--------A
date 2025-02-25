@@ -7,7 +7,7 @@ const router = express.Router();
 let tempMail = {};
 
 // Route pour générer un email temporaire (changement de `/generer?mail=create` à `/create`)
-router.get('/', async (req, res) => {
+router.get('/create', async (req, res) => {
     try {
         const response = await axios.get('https://api.tempmail.lol/v2/inbox/create');
         const data = response.data;
@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
 });
 
 // Route pour récupérer les emails d'une adresse générée
-router.get('/view', async (req, res) => {
+router.get('/inbox', async (req, res) => {
     const { message } = req.query; // Utilisation de "message" au lieu de "mail"
 
     if (!message) {
