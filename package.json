@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "express": "^4.18.2",
-    "axios" :"^1.7.9",
+    "axios": "^1.7.9",
     "dotenv": "^10.0.0",
     "whatwg-url": "^8.7.0",
     "replicate": "^1.0.1",
