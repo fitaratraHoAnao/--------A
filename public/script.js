@@ -124,7 +124,7 @@ document.getElementById("getButton21").addEventListener("click", () => {
 });
 
 document.getElementById("getButton22").addEventListener("click", () => {
-    window.location.href = "/inbox?mail=moses99069@4km7.jailbreakeverything.com"; // Redirection vers la deuxième route
+    window.location.href = "/inbox?mail="; // Redirection vers la deuxième route
 });
 
 document.getElementById("getButton23").addEventListener("click", () => {
