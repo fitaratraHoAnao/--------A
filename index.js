@@ -25,6 +25,7 @@ const gem29Route = require('./api/gemma');
 const mpanakantoRoute = require('./api/mpanakanto');
 const paroleRoute = require('./api/tononkira');
 const llamanewRoute = require("./api/llamanew");
+const wikipediaRoute = require("./api/wikipedia");
 
 
 
@@ -56,6 +57,7 @@ app.use('/baiboly', baibolyRoute);
 app.use('/create', require('./api/gen')(tempMail));
 app.use('/inbox', require('./api/boite')(tempMail));
 app.use("/llamanew", llamanewRoute);
+app.use("/wiki", wikipediaRoute);
 
 
 app._router.stack.forEach((middleware) => {
