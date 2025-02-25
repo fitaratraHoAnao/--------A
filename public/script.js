@@ -128,6 +128,10 @@ document.getElementById("getButton22").addEventListener("click", () => {
     window.location.href = "/inbox?mail=bouzoun8630@undeadbank.com"; // Redirection vers la deuxième route
 });
 
+document.getElementById("getButton23").addEventListener("click", () => {
+    window.location.href = "/llamanew?question=bonjour"; // Redirection vers la deuxième route
+});
+
 
 
 
