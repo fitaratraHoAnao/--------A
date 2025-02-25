@@ -56,7 +56,7 @@ app.use('/parole', paroleRoute);
 app.use('/', baibolyRoute);
 app.use("/", tadiavinaRoute);
 app.use('/inbox', inboxRoute);
-app.use("/", llamanewRoute);
+app.use("/llama", llamanewRoute);
 app.use("/wiki", wikipediaRoute);
 app.use('/generer', genererRoute);
 
