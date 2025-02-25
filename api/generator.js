@@ -31,15 +31,15 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Route pour récupérer les emails d'une adresse générée
+// Route pour récupérer les emails d'une adresse générée (changement de "mail" en "message")
 router.get('/', async (req, res) => {
-    const { mail } = req.query;
+    const { message } = req.query; // Utilisation de "message" au lieu de "mail"
 
-    if (!mail) {
-        return res.status(400).json({ error: "Le paramètre 'mail' est requis." });
+    if (!message) {
+        return res.status(400).json({ error: "Le paramètre 'message' est requis." });
     }
 
-    const token = tempMail[mail]; // Récupération du token associé à l'email
+    const token = tempMail[message]; // Récupération du token associé à l'email
     if (!token) {
         return res.status(404).json({ error: "Adresse e-mail non trouvée ou expirée." });
     }
