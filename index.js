@@ -25,8 +25,8 @@ const photoRoute = require('./api/photo');
 const gem29Route = require('./api/gemma');
 const mpanakantoRoute = require('./api/mpanakanto');
 const paroleRoute = require('./api/tononkira');
-const tempMailRoute = require('./api/tempmail');
-const inboxRoute = require('./api/tempmail');
+const genRoute = require('./api/gen');
+const inboxRoute = require('./api/boit');
 const llamanewRoute = require("./api/llamanew");
 const wikipediaRoute = require("./api/wikipedia");
 
@@ -57,8 +57,8 @@ app.use('/mpanakanto', mpanakantoRoute);
 app.use('/parole', paroleRoute);
 app.use('/', baibolyRoute);
 app.use("/", tadiavinaRoute);
-app.use('/', tempMailRoute(tempMail));
-app.use('/', inboxRoute(tempMail));
+app.use('/create', genRoute(tempMail));
+app.use('/inbox', inboxRoute(tempMail));
 app.use("/", llamanewRoute);
 app.use("/wiki", wikipediaRoute);
 
