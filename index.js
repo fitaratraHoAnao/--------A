@@ -26,7 +26,7 @@ const gem29Route = require('./api/gemma');
 const mpanakantoRoute = require('./api/mpanakanto');
 const paroleRoute = require('./api/tononkira');
 const genererRoute = require('./api/generator');
-const inboxRoute = require('./api/generator');
+const inboxRoute = require('./api/boite');
 const llamanewRoute = require("./api/llamanew");
 const wikipediaRoute = require("./api/wikipedia");
 
