@@ -1,6 +1,6 @@
 const express = require("express");
 const axios = require("axios");
-
+const router = express.Router();
 // Route pour créer une adresse e-mail temporaire
 router.get("/generator", async (req, res) => {
     try {
@@ -52,3 +52,8 @@ router.get("/inbox", async (req, res) => {
         res.status(500).json({ error: "Erreur lors de la récupération des messages." });
     }
 });
+router.use((req, res) => {
+    res.status(404).json({ error: "Route non trouvée" });
+});
+
+module.exports = router;
