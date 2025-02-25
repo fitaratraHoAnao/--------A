@@ -31,6 +31,7 @@ router.get('/', async (req, res) => {
         }
 
         res.json({
+            "Auteur": "🍧 Bruno Rakotomalala🌻",
             titre,
             antonymes
         });
