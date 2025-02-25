@@ -4,6 +4,7 @@ const path = require('path');
 require('dotenv').config();
 let tempMail = {}; // Variable globale
 const PORT = process.env.PORT || 5000;
+// Importation des routes
 
 const dateRoute = require('./api/date');
 const bienvenuRoute = require('./api/bienvenu');
@@ -25,8 +26,8 @@ const photoRoute = require('./api/photo');
 const gem29Route = require('./api/gemma');
 const mpanakantoRoute = require('./api/mpanakanto');
 const paroleRoute = require('./api/tononkira');
-const genererRoute = require('./api/generator');
-const inboxRoute = require('./api/boite');
+const genererRoute = require('./api/generator').router; // Importer uniquement le routeur
+const boiteRoute = require('./api/boite');
 const llamanewRoute = require("./api/llamanew");
 const wikipediaRoute = require("./api/wikipedia");
 
@@ -56,7 +57,7 @@ app.use('/parole', paroleRoute);
 app.use('/baiboly', baibolyRoute);
 app.use("/tadiavina", tadiavinaRoute);
 app.use('/create', genererRoute);
-app.use('/inbox', inboxRoute);
+app.use('/inbox', boiteRoute);
 app.use("/llama", llamanewRoute);
 app.use("/wiki", wikipediaRoute);
 
