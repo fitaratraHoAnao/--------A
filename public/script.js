@@ -121,11 +121,11 @@ document.getElementById("getButton20").addEventListener("click", () => {
 });
 
 document.getElementById("getButton21").addEventListener("click", () => {
-    window.location.href = "/tempmail/create"; // Redirection vers la deuxième route
+    window.location.href = "/create"; // Redirection vers la deuxième route
 });
 
 document.getElementById("getButton22").addEventListener("click", () => {
-    window.location.href = "/tempmail/inbox?mail=bouzoun8630@undeadbank.com"; // Redirection vers la deuxième route
+    window.location.href = "/inbox?mail=bouzoun8630@undeadbank.com"; // Redirection vers la deuxième route
 });
 
 document.getElementById("getButton23").addEventListener("click", () => {
