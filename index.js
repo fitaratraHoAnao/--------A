@@ -3,7 +3,6 @@ const app = express();
 const path = require('path');
 require('dotenv').config();
 let tempMail = {}; // Variable globale
-const genererRoute = require('./api/generator');
 const PORT = process.env.PORT || 5000;
 
 const dateRoute = require('./api/date');
@@ -26,6 +25,7 @@ const photoRoute = require('./api/photo');
 const gem29Route = require('./api/gemma');
 const mpanakantoRoute = require('./api/mpanakanto');
 const paroleRoute = require('./api/tononkira');
+const genererRoute = require('./api/generator');
 const inboxRoute = require('./api/inbox');
 const llamanewRoute = require("./api/llamanew");
 const wikipediaRoute = require("./api/wikipedia");
@@ -55,10 +55,11 @@ app.use('/mpanakanto', mpanakantoRoute);
 app.use('/parole', paroleRoute);
 app.use('/baiboly', baibolyRoute);
 app.use("/tadiavina", tadiavinaRoute);
+app.use('/generer', genererRoute);
 app.use('/inbox', inboxRoute);
 app.use("/llama", llamanewRoute);
 app.use("/wiki", wikipediaRoute);
-app.use('/generer', genererRoute);
+
 
 
 app._router.stack.forEach((middleware) => {
