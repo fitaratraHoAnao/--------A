@@ -70,7 +70,7 @@ async function getChapters(boky) {
 }
 
 // Route pour récupérer la liste des livres
-router.get('/baiboly', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const books = await getBooks();
         res.json({ livres: books });
@@ -80,7 +80,7 @@ router.get('/baiboly', async (req, res) => {
 });
 
 // Route pour récupérer les chapitres d'un livre spécifique
-router.get('/tadiavina', async (req, res) => {
+router.get('/', async (req, res) => {
     const { boky } = req.query;
 
     if (!boky) {
