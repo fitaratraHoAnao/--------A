@@ -19,14 +19,14 @@ router.get('/', async (req, res) => {
             token: data.token
         });
     } catch (error) {
-        console.error('Erreur lors de la requête à l\'API TempMail :', error.message);
-        res.status(500).json({ error: 'Impossible de créer une adresse e-mail temporaire.' });
+        console.error("Erreur lors de la requête à l'API TempMail :", error.message);
+        res.status(500).json({ error: "Impossible de créer une adresse e-mail temporaire." });
     }
 });
+
 // Route 404
 router.use((req, res) => {
     res.status(404).json({ error: "Route non trouvée" });
 });
 
 module.exports = router;
-
