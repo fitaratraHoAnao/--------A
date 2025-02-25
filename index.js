@@ -48,7 +48,7 @@ app.use('/quiz', quizRoute);
 app.use('/translation', translationRoute);
 app.use('/hira', fihiranaRoute);
 app.use('/recherche', rechercheRoute);
-app.use('/antonyme', antonymRoute);
+app.use('/search', antonymRoute);
 app.use('/photo', photoRoute);
 app.use('/gem29', gem29Route);
 app.use('/mpanakanto', mpanakantoRoute);
