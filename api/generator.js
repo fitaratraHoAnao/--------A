@@ -5,7 +5,7 @@ require('dotenv').config();
 const router = express.Router();
 
 // Stockage temporaire des mails et tokens
-let tempMail = {};
+let tempMail = {}; // Objet pour stocker les mails générés et leurs tokens
 
 // Route pour générer un email temporaire
 router.get('/', async (req, res) => {
@@ -26,9 +26,5 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Route 404 pour les chemins inconnus
-router.use((req, res) => {
-    res.status(404).json({ error: "Route non trouvée" });
-});
-
-module.exports = router;
+// Exporter tempMail pour l'utiliser dans d'autres fichiers
+module.exports = { router, tempMail };
