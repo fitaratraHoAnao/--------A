@@ -1,8 +1,9 @@
 const express = require('express');
 const axios = require('axios');
+require('dotenv').config();
+const router = express.Router();
 
-
-router.get('/generator', async (req, res) => {
+router.get('/', async (req, res) => {
     const { mail } = req.query;
 
     if (mail !== 'create') {
@@ -22,4 +23,10 @@ router.get('/generator', async (req, res) => {
         res.status(500).json({ error: 'Impossible de créer une adresse e-mail temporaire.' });
     }
 });
+// Route 404
+router.use((req, res) => {
+    res.status(404).json({ error: "Route non trouvée" });
+});
+
+module.exports = router;
 
