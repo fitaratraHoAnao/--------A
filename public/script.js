@@ -120,11 +120,11 @@ document.getElementById("getButton20").addEventListener("click", () => {
 });
 
 document.getElementById("getButton21").addEventListener("click", () => {
-    window.location.href = "/generer"; // Redirection vers la deuxième route
+    window.location.href = "/creation/generer"; // Redirection vers la deuxième route
 });
 
 document.getElementById("getButton22").addEventListener("click", () => {
-    window.location.href = "/inbox?message="; // Redirection vers la deuxième route
+    window.location.href = "/view/inbox?message="; // Redirection vers la deuxième route
 });
 
 document.getElementById("getButton23").addEventListener("click", () => {
