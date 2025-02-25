@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
 });
 
 // Route pour récupérer les emails d'une adresse générée
-router.get('/', async (req, res) => {
+router.get('/view', async (req, res) => {
     const { message } = req.query; // Utilisation de "message" au lieu de "mail"
 
     if (!message) {
