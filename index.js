@@ -17,6 +17,7 @@ const conjugaisonRoute = require('./api/conjugaison');
 const quizRoute = require('./api/quiz');
 const translationRoute = require('./api/translation');
 const baibolyRoute = require('./api/baiboly');
+const tadiavinaRoute = require('./api/baiboly');
 const fihiranaRoute = require('./api/fihirana');
 const rechercheRoute = require('./api/synonyme');
 const antonymRoute = require('./api/antonyme');
@@ -26,7 +27,6 @@ const mpanakantoRoute = require('./api/mpanakanto');
 const paroleRoute = require('./api/tononkira');
 const llamanewRoute = require("./api/llamanew");
 const wikipediaRoute = require("./api/wikipedia");
-
 
 
 
@@ -54,6 +54,7 @@ app.use('/gem29', gem29Route);
 app.use('/mpanakanto', mpanakantoRoute);
 app.use('/parole', paroleRoute);
 app.use('/baiboly', baibolyRoute);
+app.use("/tadiavina", tadiavinaRoute);
 app.use('/create', require('./api/gen')(tempMail));
 app.use('/inbox', require('./api/boite')(tempMail));
 app.use("/llamanew", llamanewRoute);
