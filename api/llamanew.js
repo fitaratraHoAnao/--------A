@@ -13,7 +13,7 @@ const replicate = new Replicate({
 const userContexts = {};
 
 // Route GET /?question=...&uid=...
-router.get("/llama", async (req, res) => {
+router.get("/", async (req, res) => {
     const { question, uid } = req.query;
 
     if (!question || !uid) {
