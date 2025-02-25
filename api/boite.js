@@ -4,8 +4,8 @@ const axios = require('axios');
 require('dotenv').config();
 const router = express.Router();
 
-// Stockage temporaire des mails et tokens (utilisé depuis `generator.js`)
-let tempMail = {};
+// Importer tempMail depuis generator.js
+const { tempMail } = require('./generator'); // Récupération de tempMail
 
 // Route pour récupérer les emails d'une adresse générée
 router.get('/', async (req, res) => {
