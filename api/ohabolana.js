@@ -1,7 +1,7 @@
 const express = require("express");
 const axios = require("axios");
 const cheerio = require("cheerio");
-
+const router = express.Router();
 
 // Fonction pour scraper une page spécifique avec numérotation
 const scrapePage = async (query, page) => {
@@ -31,7 +31,7 @@ const scrapePage = async (query, page) => {
 };
 
 // Route GET avec paramètre `ohabolana` et `page`
-router.get("/fitadiavana", async (req, res) => {
+router.get("/", async (req, res) => {
     const query = req.query.ohabolana;
     const page = req.query.page ? parseInt(req.query.page) : 1;
 
@@ -43,4 +43,9 @@ router.get("/fitadiavana", async (req, res) => {
 
     res.json({ query, page, results, nextPage });
 });
+// Route 404
+router.use((req, res) => {
+    res.status(404).json({ error: "Route non trouvée" });
+});
 
+module.exports = router;
