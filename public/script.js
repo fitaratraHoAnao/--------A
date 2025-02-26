@@ -139,6 +139,10 @@ document.getElementById("getButton25").addEventListener("click", () => {
     window.location.href = "/fitadiavana?ohabolana=omby&page=1"; // Redirection vers la deuxième route
 });
 
+document.getElementById("getButton26").addEventListener("click", () => {
+    window.location.href = "/audio?tononkalo=audio&page=1"; // Redirection vers la deuxième route
+});
+
 
 
 
