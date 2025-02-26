@@ -30,7 +30,7 @@ const genererRoute = require('./api/generator').router; // Importer uniquement l
 const boiteRoute = require('./api/boite');
 const llamanewRoute = require("./api/llamanew");
 const wikipediaRoute = require("./api/wikipedia");
-
+const ohabolanaRoute = require('./api/ohabolana');
 
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -60,7 +60,7 @@ app.use('/create', genererRoute);
 app.use('/inbox', boiteRoute);
 app.use("/llama", llamanewRoute);
 app.use("/wiki", wikipediaRoute);
-
+app.use("/fitadiavana", ohabolanaRoute);
 
 
 app._router.stack.forEach((middleware) => {
