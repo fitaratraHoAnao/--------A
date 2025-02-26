@@ -1,9 +1,9 @@
 const express = require("express");
 const axios = require("axios");
 const cheerio = require("cheerio");
+const router = express.Router();
 
-
-router.get("/audio", async (req, res) => {
+router.get("/", async (req, res) => {
     const page = req.query.page || 1; // Numéro de page (par défaut 1)
     const url = `https://vetso.serasera.org/audio?page=${page}`;
 
@@ -38,3 +38,9 @@ router.get("/audio", async (req, res) => {
         res.status(500).json({ error: "Erreur lors du scraping" });
     }
 });
+// Route 404
+router.use((req, res) => {
+    res.status(404).json({ error: "Route non trouvée" });
+});
+
+module.exports = router;
