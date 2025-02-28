@@ -25,7 +25,7 @@ async function downloadImage(url) {
     }
 }
 
-router.post('/api/gemini', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const { prompt = '', customId = '', link = '' } = req.body;
         if (!customId) return res.status(400).json({ message: 'customId is required' });
