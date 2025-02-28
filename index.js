@@ -33,6 +33,7 @@ const wikipediaRoute = require("./api/wikipedia");
 const ohabolanaRoute = require('./api/ohabolana');
 const audioRoute = require('./api/audiotononkalo');
 const horoscopeRoute = require('./api/horoscope');
+const gemini2Route = require('./api/gemini2');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
@@ -64,6 +65,7 @@ app.use("/wiki", wikipediaRoute);
 app.use("/fitadiavana", ohabolanaRoute);
 app.use("/audio", audioRoute);
 app.use('/signe', horoscopeRoute);
+app.use('/api/gemini', gemini2Route);
 
 
 app._router.stack.forEach((middleware) => {
