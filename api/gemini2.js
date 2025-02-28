@@ -5,6 +5,7 @@ const path = require('path');
 const os = require('os');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 
+const router = express.Router();
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const sessions = {}; // Stocker les historiques de conversation
@@ -59,3 +60,9 @@ router.post('/api/gemini', async (req, res) => {
 app.get('/', (req, res) => {
     res.send('<h1>Votre API Gemini est en cours d\'exécution...</h1>');
 });
+// Route 404
+router.use((req, res) => {
+    res.status(404).json({ error: "Route non trouvée" });
+});
+
+module.exports = router;
