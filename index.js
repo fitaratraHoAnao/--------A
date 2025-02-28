@@ -32,7 +32,7 @@ const llamanewRoute = require("./api/llamanew");
 const wikipediaRoute = require("./api/wikipedia");
 const ohabolanaRoute = require('./api/ohabolana');
 const audioRoute = require('./api/audiotononkalo');
-
+const horoscopeRoute = require('./api/horoscope');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
@@ -63,6 +63,7 @@ app.use("/llama", llamanewRoute);
 app.use("/wiki", wikipediaRoute);
 app.use("/fitadiavana", ohabolanaRoute);
 app.use("/audio", audioRoute);
+app.use('/signe', horoscopeRoute);
 
 
 app._router.stack.forEach((middleware) => {
