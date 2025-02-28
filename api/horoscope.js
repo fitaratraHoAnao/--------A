@@ -190,3 +190,9 @@ app.get('/recherche', async (req, res) => {
     });
   }
 });
+// Route 404
+router.use((req, res) => {
+    res.status(404).json({ error: "Route non trouvée" });
+});
+
+module.exports = router;
