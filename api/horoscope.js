@@ -84,7 +84,7 @@ router.get('/', (req, res) => {
 });
 
 // Route pour rechercher l'horoscope
-app.get('/', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     // Récupérer le signe du zodiaque depuis les paramètres de requête
     const signe = req.query.horoscope;
