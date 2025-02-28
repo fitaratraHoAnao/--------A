@@ -143,6 +143,10 @@ document.getElementById("getButton26").addEventListener("click", () => {
     window.location.href = "/audio?tononkalo=audio&page=1"; // Redirection vers la deuxième route
 });
 
+document.getElementById("getButton27").addEventListener("click", () => {
+    window.location.href = "/signe?horoscope=belier"; // Redirection vers la deuxième route
+});
+
 
 
 
