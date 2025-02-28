@@ -35,6 +35,9 @@ const audioRoute = require('./api/audiotononkalo');
 const horoscopeRoute = require('./api/horoscope');
 const gemini2Route = require('./api/gemini2');
 
+// Configuration du middleware
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Routes
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
