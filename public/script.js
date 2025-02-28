@@ -144,7 +144,7 @@ document.getElementById("getButton26").addEventListener("click", () => {
 });
 
 document.getElementById("getButton27").addEventListener("click", () => {
-    window.location.href = "/signe?horoscope=belier"; // Redirection vers la deuxième route
+    window.location.href = "/signe/rechercher?horoscope=belier"; // Redirection vers la deuxième route
 });
 
 document.getElementById("getButton28").addEventListener("click", () => {
