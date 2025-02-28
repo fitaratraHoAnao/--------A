@@ -78,11 +78,6 @@ async function translateToMalagasy(text) {
   }
 }
 
-// Route principale
-router.get('/', (req, res) => {
-  res.send('Bienvenue sur l\'API d\'horoscope. Utilisez /recherche?horoscope=signe pour obtenir l\'horoscope du jour.');
-});
-
 // Route pour rechercher l'horoscope
 router.get('/', async (req, res) => {
   try {
