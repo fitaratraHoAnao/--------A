@@ -78,7 +78,7 @@ async function translateToMalagasy(text) {
 }
 
 // Route pour rechercher l'horoscope
-router.get('/', async (req, res) => {
+router.get('/rechercher', async (req, res) => {
   try {
     // Récupérer le signe du zodiaque depuis les paramètres de requête
     const signe = req.query.horoscope;
