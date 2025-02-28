@@ -3,7 +3,7 @@ const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const fetch = require('node-fetch');
-
+const router = express.Router();
 
 // Fonction pour traduire du texte (français vers malgache)
 async function translateToMalagasy(text) {
