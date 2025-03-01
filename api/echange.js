@@ -205,7 +205,7 @@ router.get('/', (req, res) => {
         <p>Renvoie la liste de toutes les devises disponibles pour la conversion.</p>
         
         <div class="example">
-          <p><a href="/devises" target="_blank">/devises</a></p>
+          <p><a href="/liste/devises" target="_blank">/liste/devises</a></p>
           <pre>
 {
   "count": 160,
