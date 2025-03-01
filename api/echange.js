@@ -80,7 +80,7 @@ router.get('/taux', async (req, res) => {
 /**
  * Route pour récupérer la liste des devises disponibles
  */
-router.get('/devises', async (req, res) => {
+router.get('/liste', async (req, res) => {
   try {
     // Faire la requête HTTP à la page principale
     const response = await axios.get('https://www.xe.com/fr/currencyconverter/convert/?Amount=1&From=EUR&To=MGA');
