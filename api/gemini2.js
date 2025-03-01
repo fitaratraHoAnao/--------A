@@ -57,7 +57,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-app.get('/', (req, res) => {
+router.get('/', (req, res) => {
     res.send('<h1>Votre API Gemini est en cours d\'exécution...</h1>');
 });
 // Route 404
