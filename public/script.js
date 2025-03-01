@@ -16,10 +16,8 @@ document.getElementById("getButton1").addEventListener("click", () => {
     window.location.href = `/date?heure=Madagascar`;
 });
 
-// Event Listener pour le bouton 2
 document.getElementById("getButton2").addEventListener("click", () => {
-    const uid = getUID();
-    window.location.href = `/bienvenu?question=Bienvenue&uid=${encodeURIComponent(uid)}`;
+    window.location.href = "/bienvenu"; // Redirection vers la deuxième route
 });
 
 // Event Listener pour le bouton 3
