@@ -201,7 +201,7 @@ router.get('/', (req, res) => {
         </div>
         
         <h3>2. Liste des devises disponibles</h3>
-        <code>GET /devises</code>
+        <code>GET /liste/devises</code>
         <p>Renvoie la liste de toutes les devises disponibles pour la conversion.</p>
         
         <div class="example">
