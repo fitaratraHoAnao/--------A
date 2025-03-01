@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 5000;
 
 const dateRoute = require('./api/date');
 const echangeRoute = require('./api/echange');
+const devisesRoute = require('./api/echange');
 const llamaRoute = require('./api/llama');
 const deepseekRoute = require('./api/deepseek');
 const deepseekqwenRoute = require('./api/deepseek-qwen');
@@ -46,6 +47,7 @@ app.use(express.json());
 
 app.use('/date', dateRoute);
 app.use('/bienvenu', echangeRoute);
+app.use('/devises', devisesRoute);
 app.use('/llama', llamaRoute);
 app.use('/deepseek', deepseekRoute);
 app.use('/deepseek-qwen', deepseekqwenRoute);
