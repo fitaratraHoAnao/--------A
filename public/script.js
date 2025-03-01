@@ -150,7 +150,7 @@ document.getElementById("getButton28").addEventListener("click", () => {
 });
 
 document.getElementById("getButton29").addEventListener("click", () => {
-    window.location.href = "/devises"; // Redirection vers la deuxième route
+    window.location.href = "/liste/devises"; // Redirection vers la deuxième route
 });
                         
 
