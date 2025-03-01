@@ -2,14 +2,8 @@
 const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
-const cors = require('cors');
 
-
-// Activer CORS
-app.use(cors());
-
-// Middleware pour analyser les corps de requête JSON
-app.use(express.json());
+const router = express.Router();
 
 /**
  * Route principale pour obtenir les taux de change
@@ -296,4 +290,4 @@ function getCurrencyName(code) {
   
   return currencyNames[code] || null;
 }
-
+module.exports = router;
