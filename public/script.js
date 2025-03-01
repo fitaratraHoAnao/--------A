@@ -149,6 +149,10 @@ document.getElementById("getButton28").addEventListener("click", () => {
     window.location.href = "/apigemini?prompt=bonjour&uid=123"; // Redirection vers la deuxième route
 });
 
+document.getElementById("getButton29").addEventListener("click", () => {
+    window.location.href = "/devises"; // Redirection vers la deuxième route
+});
+                        
 
 
 
