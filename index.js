@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 5000;
 // Importation des routes
 
 const dateRoute = require('./api/date');
-const bienvenuRoute = require('./api/bienvenu');
+const echangeRoute = require('./api/echange');
 const llamaRoute = require('./api/llama');
 const deepseekRoute = require('./api/deepseek');
 const deepseekqwenRoute = require('./api/deepseek-qwen');
@@ -45,7 +45,7 @@ app.get('/', (req, res) => {
 app.use(express.json());
 
 app.use('/date', dateRoute);
-app.use('/bienvenu', bienvenuRoute);
+app.use('/bienvenu', echangeRoute);
 app.use('/llama', llamaRoute);
 app.use('/deepseek', deepseekRoute);
 app.use('/deepseek-qwen', deepseekqwenRoute);
