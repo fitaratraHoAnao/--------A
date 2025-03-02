@@ -47,7 +47,7 @@ app.use(express.json());
 
 app.use('/date', dateRoute);
 app.use('/bienvenu', echangeRoute);
-app.use('/devises', devisesRoute);
+app.use('/liste', devisesRoute);
 app.use('/llama', llamaRoute);
 app.use('/deepseek', deepseekRoute);
 app.use('/deepseek-qwen', deepseekqwenRoute);
